@@ -44,7 +44,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	s_len = ft_strlen(s);
 	if (s_len < start)
-		return (gc_strdup(""));
+		return (ft_strdup(""));
 	if (len > s_len - start)
 		len = s_len - start;
 	r = malloc(len + 1);

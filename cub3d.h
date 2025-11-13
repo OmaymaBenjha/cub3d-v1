@@ -1,10 +1,13 @@
 #ifndef CUB3D_H
 #define CUB3D_H
-
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+#endif
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <limits.h> 
 #include <string.h>
 
 typedef struct s_gc_node
@@ -63,9 +66,24 @@ typedef struct s_game
     int         map_started;
 } t_game;
 
-void	*gc_mall(size_t size);
-void	gc_add_pt(void *pt);
-void	gc_freed(void);
+
 int     ft_strcmp(const char *s1, const char *s2);
 void    free_split(char **arr);
+char	*get_next_line(int fd);
+char	**ft_split(char const *s, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
+int     ft_strcmp(const char *s1, const char *s2);
+int     ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strdup(char *value);
+size_t  ft_strlen(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+int     ft_atoi(const char *str);
+char	*ft_strchr(const char *s, int c);
+
+// map checking and parsing --------------------------------
+int     pre_check(int ac, char **av);
+int     main_trigger(char *map, t_game *game);
+int     process_tex(char **tex_tokens, t_config *config, int *current_line_done);
+int process_fc(char **fc_tokens, t_config *config, int *current_line_done);
+
 #endif
