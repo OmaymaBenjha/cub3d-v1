@@ -1,6 +1,4 @@
-
 #include "cub3d.h"
-
 
 static char	*get_line(char *reserve)
 {
@@ -11,8 +9,6 @@ static char	*get_line(char *reserve)
 	start = 0;
 	i = 0;
 	while (reserve[i] != '\n' && reserve[i] != '\0')
-		i++;
-	if (reserve[i] == '\n')
 		i++;
 	line = ft_substr(reserve, start, i);
 	return (line);
@@ -26,7 +22,9 @@ static char	*update_reserve(char *reserve)
 	i = 0;
 	while (reserve[i] != '\n' && reserve[i] != '\0')
 		i++;
-	new_res = ft_substr(reserve, i + 1, ft_strlen(reserve) - i - 1);
+	if (reserve[i] == '\n')
+		i++;
+	new_res = ft_substr(reserve, i, ft_strlen(reserve) - i);
 	free(reserve);
 	reserve = NULL;
 	return (new_res);
@@ -71,3 +69,4 @@ char	*get_next_line(int fd)
 	reserve = update_reserve(reserve);
 	return (line);
 }
+

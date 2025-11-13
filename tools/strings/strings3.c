@@ -88,3 +88,20 @@ void free_split(char **arr)
     }
     free(arr);
 }
+char *ft_strtrim_newline(char *s)
+{
+    size_t len;
+    char *trimmed_s;
+
+    if (!s)
+        return NULL;
+
+    len = ft_strlen(s);
+    while (len > 0 && (s[len - 1] == '\n' || s[len - 1] == ' ' || s[len - 1] == '\r' || s[len - 1] == '\t'))
+    {
+        len--;
+    }
+
+    trimmed_s = ft_substr(s, 0, len);
+    return trimmed_s;
+}

@@ -1,6 +1,11 @@
 #include "cub3d.h"
-
-static int process_config_line(char **s_line, t_config *config)
+static int process_map(char *line, t_game *game)
+{
+    (void)line;
+    (void)game;
+    return 1;
+}
+static int process_config_line(char **s_line, t_game *game, char *line)
 {
     int current_line_done;
 
@@ -8,22 +13,31 @@ static int process_config_line(char **s_line, t_config *config)
     if (ft_strcmp(s_line[0], "NO") == 0 || ft_strcmp(s_line[0], "SO") == 0 ||
         ft_strcmp(s_line[0], "EA") == 0 || ft_strcmp(s_line[0], "WE") == 0)
     {
-        if (!process_tex(s_line, config, &current_line_done))
+        if (!process_tex(s_line, &game->config, &current_line_done))
             return (0);
     }
     else if (ft_strcmp(s_line[0], "F") == 0 || ft_strcmp(s_line[0], "C") == 0)
     {
-        if (!process_fc(s_line, config, &current_line_done))
+        if (!process_fc(s_line, &game->config, &current_line_done))
             return (0);
     }
     else
     {
-        printf("Error\nUnknown identifier in config section: %s\n", s_line[0]);
-        return (0);
+       if (process_map(line, game))
+       {
+            if (game->config.all_done < 6)
+                return (printf("Error\nmap data found before or within the map config\n"), 0);
+       }
+       else 
+       {
+            if (!game->map_started)
+                printf("Error\nInvalid texture identifier: %s\n", s_line[0]);
+            return (0);
+       }
     }
     if (current_line_done)
     {
-        config->all_done++;
+        game->config.all_done++;
     }
     return (1);
 }
@@ -36,7 +50,6 @@ static int is_empty(char *line)
 {
     if (!line)
         return (1); 
-
     int i = 0;
     while (line[i])
     {
@@ -57,22 +70,13 @@ static int parse_line(char *line, t_game *game)
         if (!game->map_started)
             return (1);
         else
-            return (printf("Error\\nfound an empty line inside map data.\\n"), 0);
+            return (printf("\\nfound an empty line inside map data.\\n"), 0);
     }
-
     tokens = ft_split(line, ' ');
     if (!tokens)
         return (printf("Error\nft_split failed\n"), 0);
-    if (game->config.all_done < 6)
-    {
-        if (!process_config_line(tokens, &game->config))
+    if (!process_config_line(tokens, game, line))
             return (free_split(tokens), 0);
-    }
-    else
-    {
-        printf("map\n");
-            return (free_split(tokens), 0);
-    }
     free_split(tokens);
     return (1);
 }
@@ -81,6 +85,7 @@ int main_trigger(char *map, t_game *game)
 {
     int     fd;
     char    *line;
+    char    *trimed_line;
 
     game->config.all_done = 0;
     game->map_started = 0;
@@ -88,11 +93,10 @@ int main_trigger(char *map, t_game *game)
     if (fd < 0)
         (perror("open"), exit(EXIT_FAILURE));
     line = get_next_line(fd);
-    if (line == NULL)
-        printf("ikhan\n");
     while (line != NULL)
     {
-        if (!parse_line(line, game))
+        trimed_line = ft_strtrim_newline(line);
+        if (!parse_line(trimed_line, game))
             return (close(fd), 0);
         free(line);
         line = get_next_line(fd);

@@ -79,6 +79,7 @@ size_t  ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int     ft_atoi(const char *str);
 char	*ft_strchr(const char *s, int c);
+char    *ft_strtrim_newline(char *s);
 
 // map checking and parsing --------------------------------
 int     pre_check(int ac, char **av);
