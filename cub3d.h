@@ -61,9 +61,11 @@ typedef struct s_game
     t_textures  img_buffer;
     t_config    config;
     char        **map;
-    int         map_width;
-    int         map_height;
+    size_t      map_width;
+    size_t      map_height;
     int         map_started;
+    int         map_ended;
+    int         player_count;
 } t_game;
 
 
@@ -80,11 +82,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int     ft_atoi(const char *str);
 char	*ft_strchr(const char *s, int c);
 char    *ft_strtrim_newline(char *s);
+int     ft_isdigit(int c);
 
 // map checking and parsing --------------------------------
 int     pre_check(int ac, char **av);
 int     main_trigger(char *map, t_game *game);
 int     process_tex(char **tex_tokens, t_config *config, int *current_line_done);
-int process_fc(char **fc_tokens, t_config *config, int *current_line_done);
+int     process_fc(char **fc_tokens, t_config *config, int *current_line_done);
+int     is_player_char(char c);
+int     process_map(char *line, t_game *game);
+int     check_map_closed(t_game *game);
 
 #endif

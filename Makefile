@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror  
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 RM = rm -f
 
 SRCS =	main.c \
@@ -8,6 +8,8 @@ SRCS =	main.c \
 		logic_parsing/fetch_map.c \
 		logic_parsing/map_config_fc.c \
 		logic_parsing/map_config_tex.c \
+		logic_parsing/map_data.c \
+		logic_parsing/map_data_helper.c \
 		tools/strings/strings1.c \
 		tools/strings/strings2.c \
 		tools/strings/strings3.c \

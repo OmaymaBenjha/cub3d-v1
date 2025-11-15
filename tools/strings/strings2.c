@@ -59,3 +59,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	r[i] = '\0';
 	return (r);
 }
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}

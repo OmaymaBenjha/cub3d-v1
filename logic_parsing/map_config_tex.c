@@ -19,7 +19,7 @@ static t_textures get_texture(char **tex_tokens, int *done)
         *done = 0;
         return (perror("Error\\nMalloc failed for texture path"), t);
     }
-    fd = open(t.path, O_RDONLY); // Changed back to O_RDONLY, sufficient for reading textures
+    fd = open(t.path, O_RDONLY);
     if (fd < 0)
     {
         *done = 0;
@@ -77,6 +77,5 @@ int process_tex(char **tex_tokens, t_config *config, int *current_line_done)
         fill_config(config, WE, tex_tokens, current_line_done);
     if (!(*current_line_done))
         return (0);
-      
     return (1);
 }
