@@ -15,6 +15,7 @@ typedef struct s_gc_node
 	void				*pt;
 	struct s_gc_node	*next;
 }	t_gc_node;
+
 typedef enum e_co_type
 {
     NO,
@@ -51,6 +52,8 @@ typedef struct s_config
     t_textures  ea_tex;
     t_color     f_color;
     t_color     c_color;
+    int         f_has_been_set;
+    int         c_has_been_set;
     int         all_done;
     t_co_type   type;
 } t_config;
@@ -83,6 +86,14 @@ int     ft_atoi(const char *str);
 char	*ft_strchr(const char *s, int c);
 char    *ft_strtrim_newline(char *s);
 int     ft_isdigit(int c);
+// garbage collector----------------------------------------
+char	*gc_strdup(char *str);
+void	gc_add_pt(void *pt);
+char	*gc_substr(char const *s, unsigned int start, size_t len);
+void	gc_freed(void);
+char	**gc_split(char const *s, char c);
+char	*gc_strjoin(char const *s1, char const *s2);
+void	*gc_mall(size_t size);
 
 // map checking and parsing --------------------------------
 int     pre_check(int ac, char **av);
@@ -92,5 +103,5 @@ int     process_fc(char **fc_tokens, t_config *config, int *current_line_done);
 int     is_player_char(char c);
 int     process_map(char *line, t_game *game);
 int     check_map_closed(t_game *game);
-
+int     is_map_char(char c);
 #endif

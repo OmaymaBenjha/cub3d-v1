@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 RM = rm -f
 
 SRCS =	main.c \
@@ -13,7 +13,9 @@ SRCS =	main.c \
 		tools/strings/strings1.c \
 		tools/strings/strings2.c \
 		tools/strings/strings3.c \
-		tools/get_next_line.c
+		tools/get_next_line.c \
+		tools/garbage_collector/gc_mall.c \
+		tools/garbage_collector/gc_mall2.c
 
 
 

@@ -24,7 +24,7 @@ static char	*update_reserve(char *reserve)
 		i++;
 	if (reserve[i] == '\n')
 		i++;
-	new_res = ft_substr(reserve, i, ft_strlen(reserve) - i);
+	new_res = gc_substr(reserve, i, ft_strlen(reserve) - i);
 	free(reserve);
 	reserve = NULL;
 	return (new_res);
@@ -41,7 +41,7 @@ static char	*helper_func(char *buffer, char *reserve, int fd)
 		if (bytes_read == -1)
 			return (free(buffer), free(reserve), reserve = NULL, NULL);
 		buffer[bytes_read] = '\0';
-		reserve = ft_strjoin(reserve, buffer);
+		reserve = gc_strjoin(reserve, buffer);
 		if (!reserve)
 			return (NULL);
 		if (ft_strchr(reserve, '\n'))
@@ -64,7 +64,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	reserve = helper_func(buffer, reserve, fd);
 	if (!reserve || *reserve == '\0')
-		return (free(reserve), reserve = NULL, NULL);
+		return ( reserve = NULL, NULL);
 	line = get_line(reserve);
 	reserve = update_reserve(reserve);
 	return (line);

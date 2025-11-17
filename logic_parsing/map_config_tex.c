@@ -10,20 +10,20 @@ static t_textures get_texture(char **tex_tokens, int *done)
     if (!tex_tokens || !tex_tokens[0] || !tex_tokens[1])
     {
         *done = 0;
-        return ( printf("Error\\nInvalid texture line format. Expected 'IDENTIFIER PATH'.\\n"), t);
+        return ( printf("Error\nInvalid texture line format. Expected 'IDENTIFIER PATH'.\n"), t);
     }
     raw_path = tex_tokens[1];
-    t.path = ft_strdup(raw_path);
+    t.path = gc_strdup(raw_path);
     if (!t.path)
     {
         *done = 0;
-        return (perror("Error\\nMalloc failed for texture path"), t);
+        return (perror("Error\nstrdup failed for texture path"), t);
     }
     fd = open(t.path, O_RDONLY);
     if (fd < 0)
     {
         *done = 0;
-        return (perror("Error\\nCannot open texture path"), t);
+        return (perror("Error\nCannot open texture path"), t);
     }
     close(fd);
     *done = 1;

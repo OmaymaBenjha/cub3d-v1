@@ -39,52 +39,38 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-#include <limits.h>
-
 int ft_atoi(const char *str)
 {
     long result = 0;
     int  sign = 1;
     int  i = 0;
 
-    // Skip whitespace
     while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
         i++;
-
-    // Check sign
     if (str[i] == '-' || str[i] == '+')
     {
         if (str[i] == '-')
             sign = -1;
         i++;
     }
-
-    // Parse digits
     while (str[i] >= '0' && str[i] <= '9')
     {
         int digit = str[i] - '0';
-
-        // Check overflow BEFORE multiplying
         if (result > (LONG_MAX - digit) / 10)
         {
             if (sign == 1)
-                return (INT_MAX);   // positive overflow
+                return (INT_MAX);
             else
-                return (INT_MIN);   // negative overflow
+                return (INT_MIN);
         }
-
         result = result * 10 + digit;
         i++;
     }
-
     result *= sign;
-
-    // Final range check (should not be needed, but safe)
     if (result > INT_MAX)
         return INT_MAX;
     if (result < INT_MIN)
         return INT_MIN;
-
     return (int)result;
 }
 
@@ -121,13 +107,10 @@ char *ft_strtrim_newline(char *s)
 
     if (!s)
         return NULL;
-
     len = ft_strlen(s);
-    while (len > 0 && (s[len - 1] == '\n' || s[len - 1] == ' ' || s[len - 1] == '\r' || s[len - 1] == '\t'))
-    {
+    while (len > 0 && (s[len - 1] == '\n' ||
+        s[len - 1] == ' ' || s[len - 1] == '\r' || s[len - 1] == '\t'))
         len--;
-    }
-
-    trimmed_s = ft_substr(s, 0, len);
+    trimmed_s = gc_substr(s, 0, len);
     return trimmed_s;
 }

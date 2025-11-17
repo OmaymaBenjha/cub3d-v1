@@ -16,19 +16,27 @@ static int process_config_line(char **s_line, t_game *game, char *line)
         if (!process_fc(s_line, &game->config, &current_line_done))
             return (0);
     }
+    else if (game->config.all_done < 6)
+    {
+        char *line_copy;
+        line_copy = gc_strdup(line);
+        if (!line_copy)
+            return (printf("Error\nstrdup failed!\n"),0);
+        while (*line_copy)
+        {
+            if (!is_map_char(*line))
+                break;
+            line_copy++;
+        }
+        if (is_map_char(*line))
+            return (printf("Error\nMap data found before or within the map config\n"), 0);
+        return(printf("Error\nInvalid texture identifier: %s\n", s_line[0]),0);
+    }
     else
     {
-       if (process_map(line, game))
-       {
-            if (game->config.all_done < 6)
-                return (printf("Error\nmap data found before or within the map config\n"), 0);
-       }
-       else 
-       {
-            if (!game->map_started)
-                printf("Error\nInvalid texture identifier: %s\n", s_line[0]);
+       if (!process_map(line, game))
             return (0);
-       }
+       
     }
     if (current_line_done)
     {
@@ -72,27 +80,47 @@ static int parse_line(char *line, t_game *game)
     }
     else if(game->map_ended)
         return (printf("Error\nfound an empty line inside map data.\n"), 0);
-    tokens = ft_split(line, ' ');
+    tokens = gc_split(line, ' ');
     if (!tokens)
         return (printf("Error\nft_split failed\n"), 0);
     if (!process_config_line(tokens, game, line))
-            return (free_split(tokens), 0);
-    free_split(tokens);
+            return (0);
     return (1);
 }
-
-int main_trigger(char *map, t_game *game)
+static void initiate_game_struct(t_game *game)
 {
-    int     fd;
-    char    *line;
-    char    *trimed_line;
-
     game->config.all_done = 0;
     game->map_started = 0;
     game->map = NULL;
     game->map_width = 0;
     game->map_height = 0;
     game->map_ended = 0;
+    game->player_count = 0;
+    game->config.c_has_been_set = 0;
+    game->config.f_has_been_set = 0;
+}
+
+static int check_game_map_state(t_game *game)
+{
+    if (game->player_count == 0)
+        return(printf("Error\nPlayer starting position is missing in the map.\nTry: S/N/W/E.\n"),0);
+    if (game->config.all_done == 0 && !game->map_started)
+        return (printf("Map file cannot be empty!\n"), 0);
+    if (game->config.all_done < 6)
+        return (printf("Error\nMissing one or more config id.\n"), 0);
+    if (!game->map_started && !game->map_ended)
+        return (printf("Error\nMap data wasn't found in file\n"), 0);
+    if (check_map_closed(game))
+        return (0);
+    return (1);
+}
+int main_trigger(char *map, t_game *game)
+{
+    int     fd;
+    char    *line;
+    char    *trimed_line;
+
+    initiate_game_struct(game);
     fd = open(map, O_RDONLY);
     if (fd < 0)
         (perror("open"), exit(EXIT_FAILURE));
@@ -103,18 +131,12 @@ int main_trigger(char *map, t_game *game)
         if (!trimed_line)
             return (printf("ERROR\nstriming line failed!\n"), free(line), close(fd), 0);
         if (!parse_line(trimed_line, game))
-            return (free(line), free(trimed_line), close(fd), 0);
+            return (free(line), close(fd), 0);
         free(line);
         line = get_next_line(fd);
     }
     close(fd);
-    if (game->config.all_done == 0 && !game->map_started)
-        return (printf("map file cannot be empty!\n"), 0);
-    if (game->config.all_done < 6)
-        return (printf("Error\nMissing one or more config id.\n"), 0);
-    if (!game->map_started && !game->map_ended)
-        return (printf("Error\nmap data wasn't found in file\n"));
-    if (check_map_closed(game))
+    if (!check_game_map_state(game))
         return (0);
     return (1);
 }

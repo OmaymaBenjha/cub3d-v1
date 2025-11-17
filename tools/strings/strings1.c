@@ -64,22 +64,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*new_str;
 	size_t	i;
 	size_t	j;
-    size_t  len1; // Added
-    size_t  len2; // Added
+    size_t  len1;
+    size_t  len2;
 
-	if (!s2) // If s2 is NULL, cannot join anything meaningful
+	if (!s2) 
 		return (NULL);
-
-    // Handle s1 being NULL by treating its length as 0
     len1 = (s1 == NULL) ? 0 : ft_strlen(s1);
     len2 = ft_strlen(s2);
 
-	new_str = (char *)malloc(len1 + len2 + 1); // Use calculated lengths
+	new_str = (char *)malloc(len1 + len2 + 1);
 	if (!new_str)
 		return (NULL);
 
 	i = 0;
-	if (s1) // Only copy s1 if it's not NULL
+	if (s1)
 	{
 		while (s1[i])
 		{

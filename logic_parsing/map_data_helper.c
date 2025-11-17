@@ -47,7 +47,7 @@ static int check_neighbor_edges(t_game *game, size_t *r)
     return (1);
 }
 
-static int check_raw_edges(t_game *game)
+int check_raw_edges(t_game *game)
 {
     size_t  r;
     size_t  c;
@@ -60,6 +60,7 @@ static int check_raw_edges(t_game *game)
     last_non_space = (size_t) - 1;
     while (r < game->map_height)
     {
+        c = 0;
         while (c < ft_strlen(game->map[r]))
         {
             if (game->map[r][c] != ' ')

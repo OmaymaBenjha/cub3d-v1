@@ -1,5 +1,5 @@
 #include "cub3d.h"
-static int is_map_char(char c)
+int is_map_char(char c)
 {
     return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ');
 }
@@ -16,10 +16,10 @@ static void add_line(t_game *game, char *line)
     i = 0;
     if (!game->map)
     {
-        game->map = (char **)malloc(sizeof(char *) * 2);
+        game->map = (char **)gc_mall(sizeof(char *) * 2);
         if (!game->map)
             (perror("Error\nMalloc failed for map"), exit(EXIT_FAILURE));
-        game->map[0] = ft_strdup(line);
+        game->map[0] = gc_strdup(line);
         if (!game->map[0])
             (perror("Error\nMalloc failed for map line"), exit(EXIT_FAILURE));
         game->map[1] = NULL;
@@ -27,7 +27,7 @@ static void add_line(t_game *game, char *line)
     }
     else
     {
-        new_map = (char **)malloc(sizeof(char *) * (game->map_height + 2));
+        new_map = (char **)gc_mall(sizeof(char *) * (game->map_height + 2));
         if (!new_map)
             (perror("Error\nMalloc failed for map"), exit(EXIT_FAILURE));
         while (i < game->map_height)
@@ -35,11 +35,10 @@ static void add_line(t_game *game, char *line)
             new_map[i] = game->map[i];
             i++;
         }
-        new_map[i] = ft_strdup(line);
+        new_map[i] = gc_strdup(line);
         if (!new_map)
             (perror("Error\nMalloc failed for map line"), exit(EXIT_FAILURE));
         new_map[i + 1] = NULL;
-        free(game->map);
         game->map = new_map;
         game->map_height++;
     }
@@ -52,17 +51,16 @@ static void add_line(t_game *game, char *line)
 static int validate_map_line(char *line, t_game *game)
 {
     size_t  i;
-    static  int p_count;
-
+    
     i = 0;
     while (line[i])
     {
         if (!is_map_char(line[i]))
-            return (printf("Error\nInvalid character in map: '%c\n'", line[i]), 0);
+            return (printf("Error\nInvalid character in map: '%c'\n", line[i]), 0);
         if (is_player_char(line[i]))
         {
-            p_count++;
-            if (p_count > 1)
+            game->player_count++;
+            if (game->player_count > 1)
                 return (printf("Error\nOnly one player start position is allowed in the map.\n"), 0);
         }
         if (line[i] == '0' || is_player_char(line[i]))

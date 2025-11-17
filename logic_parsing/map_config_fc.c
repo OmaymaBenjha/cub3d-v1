@@ -26,11 +26,28 @@ static void    fill_color(t_config *config, t_co_type type, char **rgb_tokens, i
     t_color tmp_color;
 
     tmp_color = get_representation(rgb_tokens, line);
-    
     if (type == F)
+    {   if (config->f_has_been_set == 1)
+        {
+            printf("Error\nDuplicate F rgb representation!\n");
+            line =0;
+        }
         config->f_color = tmp_color;
-    else    
+        if (line)
+            config->f_has_been_set++;
+    }
+        
+    else
+    {
+        if (config->c_has_been_set == 1)
+        {
+            printf("Error\nDuplicate C rgb representation!\n");
+            line =0;
+        }
         config->c_color = tmp_color;
+        if (line)
+            config->c_has_been_set++;
+    }    
     if (line == 0)
         return;
 }
@@ -63,20 +80,20 @@ static char *join_tokens(char **tokens)
 
     if (!tokens || !tokens[0])
         return (NULL);
-    result = ft_strdup(tokens[1]);
+    result = gc_strdup(tokens[1]);
     if (!result)
-        return (NULL);
+        return (printf("Error\nstrdup failed.\n"), NULL);
     i = 2;
     while (tokens[i])
     {
-        tmp = ft_strjoin(result, " ");
-        free(result);
+        tmp = gc_strjoin(result, " ");
+        if (!tmp)
+            return (printf("Error\nstrjoin failed.\n"), NULL);
         if (!tmp)
             return (NULL);
-        result = ft_strjoin(tmp, tokens[i]);
-        free(tmp);
+        result = gc_strjoin(tmp, tokens[i]);
         if (!result)
-            return (NULL);
+            return (printf("Error\nstrjoin failed.\n"), NULL);
         i++;
     }
     return (result);
@@ -84,23 +101,32 @@ static char *join_tokens(char **tokens)
 
 int process_fc(char **fc_tokens, t_config *config, int *current_line_done)
 {
-    char *merged;
-    char **rgb;
+    char    *merged;
+    char    **rgb;
+    int     fields_count;
+    int     i;
 
+    i = 0;
+    fields_count = 0;
     *current_line_done = 1;
     if (!fc_tokens[1])
-        return (printf("Error\nMissing rgb representation for %s...\n", fc_tokens[0]), 0);
+        return (printf("Error\nMissing rgb representation for %s\n", fc_tokens[0]), 0);
     merged = join_tokens(fc_tokens);
     if (!merged)
-        return (printf("Error\nmalloc failed\n"), 0);    
-    rgb = ft_split(merged, ',');
-    free(merged);
+        return (printf("Error\nmalloc failed\n"), 0); 
+    while (merged[i])
+    {
+        if (merged[i] == ',')
+            fields_count++;
+        i++;
+    }
+    if (fields_count != 2)
+        return (printf("Error\nInvalid rgb representation\n"), 0);
+    rgb = gc_split(merged, ',');
     if (!rgb)
         return (printf("Error\nft_split failed!\n"), 0);
     if (!not_valid_num(rgb))
         return (0);
-    if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3] != NULL)
-        return (printf("Error\ninvalid rgb representation\n"), 0);
     if (ft_strcmp(fc_tokens[0], "F") == 0)
         fill_color(config, F, rgb, current_line_done);
     else if (ft_strcmp(fc_tokens[0], "C") == 0)

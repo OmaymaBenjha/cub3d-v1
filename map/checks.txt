@@ -10,3 +10,10 @@ so the conditions for this check is :
 if all_done >= 6 and item != map_item => invalid map data or file
 
 
+ft_strjoin
+
+ft_split
+
+st_strdub
+
+ft_substr
