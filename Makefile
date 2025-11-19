@@ -10,6 +10,7 @@ SRCS =	main.c \
 		logic_parsing/map_config_tex.c \
 		logic_parsing/map_data.c \
 		logic_parsing/map_data_helper.c \
+		logic_parsing/player_cord.c \
 		tools/strings/strings1.c \
 		tools/strings/strings2.c \
 		tools/strings/strings3.c \

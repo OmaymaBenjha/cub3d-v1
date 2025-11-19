@@ -57,6 +57,17 @@ typedef struct s_config
     int         all_done;
     t_co_type   type;
 } t_config;
+
+typedef struct s_player
+{
+    double  posX;
+    double  posY;
+    double  dirX;
+    double  dirY;
+    double  planeX;
+    double  planeY;
+}   t_player;
+
 typedef struct s_game
 {
     void        *mlx_ptr;
@@ -69,39 +80,42 @@ typedef struct s_game
     int         map_started;
     int         map_ended;
     int         player_count;
+    t_player    player;
 } t_game;
 
 
-int     ft_strcmp(const char *s1, const char *s2);
-void    free_split(char **arr);
-char	*get_next_line(int fd);
-char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-int     ft_strcmp(const char *s1, const char *s2);
-int     ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strdup(char *value);
-size_t  ft_strlen(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-int     ft_atoi(const char *str);
-char	*ft_strchr(const char *s, int c);
-char    *ft_strtrim_newline(char *s);
-int     ft_isdigit(int c);
+int         ft_strcmp(const char *s1, const char *s2);
+void        free_split(char **arr);
+char        *get_next_line(int fd);
+char        **ft_split(char const *s, char c);
+char        *ft_strjoin(char const *s1, char const *s2);
+int         ft_strcmp(const char *s1, const char *s2);
+int         ft_strncmp(const char *s1, const char *s2, size_t n);
+char        *ft_strdup(char *value);
+size_t      ft_strlen(const char *s);
+char        *ft_substr(char const *s, unsigned int start, size_t len);
+int         ft_atoi(const char *str);
+char        *ft_strchr(const char *s, int c);
+char        *ft_strtrim_newline(char *s);
+int         ft_isdigit(int c);
 // garbage collector----------------------------------------
-char	*gc_strdup(char *str);
-void	gc_add_pt(void *pt);
-char	*gc_substr(char const *s, unsigned int start, size_t len);
-void	gc_freed(void);
-char	**gc_split(char const *s, char c);
-char	*gc_strjoin(char const *s1, char const *s2);
-void	*gc_mall(size_t size);
+char        *gc_strdup(char *str);
+void        gc_add_pt(void *pt);
+char        *gc_substr(char const *s, unsigned int start, size_t len);
+void        gc_freed(void);
+char        **gc_split(char const *s, char c);
+char        *gc_strjoin(char const *s1, char const *s2);
+void       *gc_mall(size_t size);
 
 // map checking and parsing --------------------------------
-int     pre_check(int ac, char **av);
-int     main_trigger(char *map, t_game *game);
-int     process_tex(char **tex_tokens, t_config *config, int *current_line_done);
-int     process_fc(char **fc_tokens, t_config *config, int *current_line_done);
-int     is_player_char(char c);
-int     process_map(char *line, t_game *game);
-int     check_map_closed(t_game *game);
-int     is_map_char(char c);
+int         pre_check(int ac, char **av);
+int         main_trigger(char *map, t_game *game);
+int         process_tex(char **tex_tokens, t_config *config, int *current_line_done);
+int         process_fc(char **fc_tokens, t_config *config, int *current_line_done);
+int         is_player_char(char c);
+int         process_map(char *line, t_game *game);
+int         check_map_closed(t_game *game);
+int         is_map_char(char c);
+void        get_player_cord(t_game *game);
+
 #endif
