@@ -81,5 +81,6 @@ int process_map(char *line, t_game *game)
     if (!validate_map_line(line, game))
         return (0);
     add_line(game, line);
+    game->map_exist = 1;
     return (1);
 }

@@ -95,9 +95,9 @@ typedef struct s_game
     int         map_started;
     int         map_ended;
     int         player_count;
+    int         map_exist;
     t_player    player;
 } t_game;
-// Add this inside cub3d.h
 
 typedef struct s_ray
 {

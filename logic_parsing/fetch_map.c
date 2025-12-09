@@ -98,11 +98,12 @@ static void initiate_game_struct(t_game *game)
     game->player_count = 0;
     game->config.c_has_been_set = 0;
     game->config.f_has_been_set = 0;
+    game->map_exist = 0;
 }
 
 static int check_game_map_state(t_game *game)
 {
-    if (game->player_count == 0)
+    if (game->player_count == 0 && game->map_exist)
         return(printf("Error\nPlayer starting position is missing in the map.\nTry: S/N/W/E.\n"),0);
     if (game->config.all_done == 0 && !game->map_started)
         return (printf("Map file cannot be empty!\n"), 0);

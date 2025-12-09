@@ -62,7 +62,7 @@ int process_tex(char **tex_tokens, t_config *config, int *current_line_done)
 {
 
     *current_line_done = 0;
-    if (tex_tokens[2] != NULL)
+    if (tex_tokens[2])
     {
         printf("Error\nToo many arguments on texture line '%s %s ...'\n", tex_tokens[0], tex_tokens[1]);
         return (0);
