@@ -138,6 +138,5 @@ int main_trigger(char *map, t_game *game)
     close(fd);
     if (!check_game_map_state(game))
         return (0);
-    get_player_cord(game);
     return (1);
 }

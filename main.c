@@ -8,8 +8,11 @@ int main(int ac, char **av)
     memset(&game, 0, sizeof(t_game));
     if (!pre_check(ac, av))
         return (0);
-    if (!main_trigger(av[1], &game))
+    if (main_trigger(av[1], &game))
         return (1);
+    get_player_cord(&game);
+    make_map_rectangular(&game);
+    init_game(&game);
     gc_freed();
     return (0);
 }

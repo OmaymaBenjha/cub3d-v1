@@ -9,6 +9,21 @@
 #include <stdio.h>
 #include <limits.h> 
 #include <string.h>
+#include <math.h>     // <--- You will likely need math.h too
+#include "mlx.h" 
+
+// Key Codes for QWERTY (Linux X11)
+#define KEY_ESC 65307
+#define KEY_W 119
+#define KEY_A 97
+#define KEY_S 115
+#define KEY_D 100
+#define KEY_LEFT 65361
+#define KEY_RIGHT 65363
+
+// Movement settings
+#define MOVESPEED 0.1
+#define ROTSPEED 0.1
 
 typedef struct s_gc_node
 {
@@ -82,7 +97,28 @@ typedef struct s_game
     int         player_count;
     t_player    player;
 } t_game;
+// Add this inside cub3d.h
 
+typedef struct s_ray
+{
+    double      cameraX;
+    double      rayDirX;
+    double      rayDirY;
+    int         mapX;
+    int         mapY;
+    double      sideDistX;
+    double      sideDistY;
+    double      deltaDistX;
+    double      deltaDistY;
+    double      perpWallDist;
+    int         stepX;
+    int         stepY;
+    int         hit;
+    int         side; 
+    int         lineHeight;
+    int         drawStart;
+    int         drawEnd;
+}   t_ray;
 
 int         ft_strcmp(const char *s1, const char *s2);
 void        free_split(char **arr);
@@ -117,5 +153,16 @@ int         process_map(char *line, t_game *game);
 int         check_map_closed(t_game *game);
 int         is_map_char(char c);
 void        get_player_cord(t_game *game);
+void        make_map_rectangular(t_game *game);
 
+// game core ---------------------------------------------
+
+void    init_game(t_game *game);
+int     key_handler(int keycode, t_game *game);
+void    move_forward(t_game *game);
+void    move_backward(t_game *game);
+void    rotate_left(t_game *game);
+void    rotate_right(t_game *game);
+void    move_left(t_game *game);
+void    move_right(t_game *game);
 #endif
