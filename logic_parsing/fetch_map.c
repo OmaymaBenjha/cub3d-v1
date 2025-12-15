@@ -99,6 +99,16 @@ static void initiate_game_struct(t_game *game)
     game->config.c_has_been_set = 0;
     game->config.f_has_been_set = 0;
     game->map_exist = 0;
+    game->game_state = 0;
+    game->menu.start_rect.width = 500;
+    game->menu.start_rect.height = 220;
+    game->menu.exit_rect.width = 500;
+    game->menu.exit_rect.height = 220;
+    game->menu.start_rect.x = WIDTH / 2 - game->menu.start_rect.width - 40;
+    game->menu.start_rect.y = HEIGHT / 2 ;
+    game->menu.exit_rect.x = WIDTH / 2 + 40;
+    game->menu.exit_rect.y = HEIGHT / 2;
+    
 }
 
 static int check_game_map_state(t_game *game)

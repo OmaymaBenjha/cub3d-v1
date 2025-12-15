@@ -3,19 +3,18 @@
 
 
    
-F     1,0,2
-C     225,55,30
+F    40, 55, 65
+C    76, 187, 217
 
 
 
 
 
-
-   WE ./textures/a.xpm
-  EA   ./textures/a.xpm
+   WE ./textures/wall.xpm
+  EA   ./textures/wall.xpm
        
-NO ./textures/a.xpm
-SO ./textures/a.xpm
+NO ./textures/wall1.xpm
+SO ./textures/wall1.xpm
 
 
 111111111111111111111111111111111111111111

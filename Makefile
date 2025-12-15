@@ -3,22 +3,22 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 RM = rm -f
 
-# --- 1. MLX CONFIGURATION ---
 MLX_PATH = ./minilibx-linux
 MLX_NAME = mlx
 MLX_LIB  = $(MLX_PATH)/libmlx.a
 
-# Includes: Look for headers in current dir AND mlx dir
 INCLUDES = -I. -I$(MLX_PATH)
 
-# Linker: Look for libs in mlx dir, link mlx, link linux system libs
 MLX_FLAGS = -L$(MLX_PATH) -l$(MLX_NAME) -lXext -lX11 -lm -lz
-# ----------------------------
 
 SRCS =	main.c \
 		core/graphics.c \
+		core/drawing.c \
+		core/raycasting.c \
 		core/inputs.c \
 		core/moves.c \
+		core/moves1.c \
+		core/welcome_page.c \
 		logic_parsing/check_args.c \
 		logic_parsing/fetch_map.c \
 		logic_parsing/map_config_fc.c \
@@ -36,18 +36,14 @@ SRCS =	main.c \
 
 OBJS = $(SRCS:.c=.o)
 
-# 2. Add MLX_LIB as a requirement
 all: $(MLX_LIB) $(NAME)
 
-# 3. Rule to compile the MLX library if it's missing
 $(MLX_LIB):
 	@make -C $(MLX_PATH)
 
-# 4. Link everything together (MLX_FLAGS at the end)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME) 
 
-# 5. Compile .c to .o with the new includes
 %.o: %.c cub3d.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 

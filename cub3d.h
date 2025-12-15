@@ -9,10 +9,9 @@
 #include <stdio.h>
 #include <limits.h> 
 #include <string.h>
-#include <math.h>     // <--- You will likely need math.h too
+#include <math.h>    
 #include "mlx.h" 
 
-// Key Codes for QWERTY (Linux X11)
 #define KEY_ESC 65307
 #define KEY_W 119
 #define KEY_A 97
@@ -21,9 +20,14 @@
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
 
-// Movement settings
 #define MOVESPEED 0.1
 #define ROTSPEED 0.1
+
+#define WIDTH 1920
+#define HEIGHT 1080
+#define BG_PATH "textures/menu/bg.xpm"
+#define S_PATH  "textures/menu/s.xpm"
+#define E_PATH  "textures/menu/ex.xpm"
 
 typedef struct s_gc_node
 {
@@ -59,6 +63,18 @@ typedef struct s_textures
     int     height;
     char    *path;
 }   t_textures;
+
+typedef struct s_img
+{
+    void    *img_ptr;
+    char    *addr;
+    int     bpp;
+    int     line_len;
+    int     endian;
+    int     width;
+    int     height;
+}   t_img;
+
 typedef struct s_config
 {
     t_textures  no_tex;
@@ -83,6 +99,23 @@ typedef struct s_player
     double  planeY;
 }   t_player;
 
+typedef struct s_rect
+{
+    int x;
+    int y;
+    int height;
+    int width;
+} t_rect;
+
+typedef struct s_menu
+{
+    t_img   bg;
+    t_img   btn_start;
+    t_img   btn_exit;
+    t_rect  start_rect;
+    t_rect  exit_rect;
+} t_menu;
+
 typedef struct s_game
 {
     void        *mlx_ptr;
@@ -97,7 +130,23 @@ typedef struct s_game
     int         player_count;
     int         map_exist;
     t_player    player;
+    t_img       tex_north;
+    t_img       tex_south;
+    t_img       tex_west;
+    t_img       tex_east;
+    int         game_state;
+    t_menu      menu;
+    int         mouse_x;
+    int         mouse_y;
 } t_game;
+
+typedef struct s_wall
+{
+    double  texPos;
+    int     color;
+    int     texX;
+    int     texY;
+} t_wall;
 
 typedef struct s_ray
 {
@@ -158,6 +207,7 @@ void        make_map_rectangular(t_game *game);
 // game core ---------------------------------------------
 
 void    init_game(t_game *game);
+void    render_welcome_page(t_game *game);
 int     key_handler(int keycode, t_game *game);
 void    move_forward(t_game *game);
 void    move_backward(t_game *game);
@@ -165,4 +215,12 @@ void    rotate_left(t_game *game);
 void    rotate_right(t_game *game);
 void    move_left(t_game *game);
 void    move_right(t_game *game);
+int track_mouse_pos(int x, int y, t_game *game);
+
+void    drawing_engin(t_ray *ray, t_game *game, int x);
+void    my_mlx_pixel_put(t_textures *data, int x, int y, int color);
+void    raycasting_engine(t_game *game);
+unsigned    int get_tex_color(t_img *tex, int x, int y);
+int check_mouse_event_bound(t_game *game, t_rect rect);
+int track_mouse_click(int button, int x, int y, t_game *game);
 #endif
