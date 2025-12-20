@@ -25,8 +25,6 @@ static char	*update_reserve(char *reserve)
 	if (reserve[i] == '\n')
 		i++;
 	new_res = gc_substr(reserve, i, ft_strlen(reserve) - i);
-	free(reserve);
-	reserve = NULL;
 	return (new_res);
 }
 

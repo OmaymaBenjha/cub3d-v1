@@ -9,21 +9,21 @@ static void set_pos(t_player *player, char c)
     if (c == 'N')
     {
         player->dirX = 0;
-        player->dirY = -1;
+        player->dirY = -0.99;
     }
     else if (c == 'S')
     {
         player->dirX = 0;
-        player->dirY = 1;
+        player->dirY = 0.99;
     }
     else if (c == 'W')
     {
-        player->dirX = -1;
+        player->dirX = -0.99;
         player->dirY = 0;
     }
     else if (c == 'E')
     {
-        player->dirX = 1;
+        player->dirX = 0.99;
         player->dirY = 0;
     }
 
@@ -31,22 +31,22 @@ static void set_pos(t_player *player, char c)
 
 static void set_plane(t_player *player)
 {
-    if (player->dirY == -1)
+    if (player->dirY == -0.99)
     {
         player->planeX = .66;
         player->planeY = 0;
     }
-    else if (player->dirY == 1)
+    else if (player->dirY == 0.99)
     {
         player->planeX = -.66;
         player->planeY = 0;
     }
-    else if (player->dirX == -1)
+    else if (player->dirX == -0.99)
     {
         player->planeX = 0;
         player->planeY = -.66;
     }
-    else if (player->dirX == 1)
+    else if (player->dirX == 0.99)
     {
         player->planeX = 0;
         player->planeY = .66;

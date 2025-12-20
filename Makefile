@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 MLX_PATH = ./minilibx-linux
@@ -19,6 +19,7 @@ SRCS =	main.c \
 		core/moves.c \
 		core/moves1.c \
 		core/welcome_page.c \
+		core/cleanup.c \
 		logic_parsing/check_args.c \
 		logic_parsing/fetch_map.c \
 		logic_parsing/map_config_fc.c \

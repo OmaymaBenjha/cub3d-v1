@@ -4,7 +4,7 @@ int key_handler(int keycode, t_game *game)
 {
     if (keycode == KEY_ESC)
     {
-        exit(0);
+        handle_exit(game);
     }
     if (keycode == KEY_W)
         move_forward(game);

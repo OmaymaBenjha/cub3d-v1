@@ -1,9 +1,12 @@
 #include "cub3d.h"
 
-void    move_forward(t_game *game)
+void move_forward(t_game *game)
 {
-    double new_x = game->player.posX + game->player.dirX * MOVESPEED;
-    double new_y = game->player.posY + game->player.dirY * MOVESPEED;
+    double new_x;
+    double new_y;
+
+    new_x = game->player.posX + game->player.dirX * MOVESPEED;
+    new_y = game->player.posY + game->player.dirY * MOVESPEED;
     if (game->map[(int)game->player.posY][(int)new_x] != '1')
         game->player.posX = new_x;
     if (game->map[(int)new_y][(int)game->player.posX] != '1')
@@ -46,7 +49,7 @@ int track_mouse_click(int button, int x, int y, t_game *game)
     else if (button  == 1 && check_mouse_event_bound(game, game->menu.exit_rect))
     {
         if (game->game_state  == 0)
-            exit(0);
+            handle_exit(game);
     }
     return (0);
 }

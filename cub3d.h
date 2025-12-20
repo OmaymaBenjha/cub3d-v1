@@ -223,4 +223,5 @@ void    raycasting_engine(t_game *game);
 unsigned    int get_tex_color(t_img *tex, int x, int y);
 int check_mouse_event_bound(t_game *game, t_rect rect);
 int track_mouse_click(int button, int x, int y, t_game *game);
+int    handle_exit(t_game *game);
 #endif

@@ -121,7 +121,7 @@ static int check_game_map_state(t_game *game)
         return (printf("Error\nMissing one or more config id.\n"), 0);
     if (!game->map_started && !game->map_ended)
         return (printf("Error\nMap data wasn't found in file\n"), 0);
-    if (check_map_closed(game))
+    if (!check_map_closed(game))
         return (0);
     return (1);
 }

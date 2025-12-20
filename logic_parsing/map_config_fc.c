@@ -7,6 +7,11 @@ static t_color get_representation(char **tokens, int *line)
     int     b;
 
     memset(&c, 0, sizeof(t_color));
+    if (!tokens[0] || !tokens[1] || !tokens[2])
+    {
+        *line = 0;
+        return (printf("Error\nrgb item is missing.\n"), c);
+    }
     r = ft_atoi(tokens[0]);
     g = ft_atoi(tokens[1]);
     b = ft_atoi(tokens[2]);  
@@ -131,7 +136,5 @@ int process_fc(char **fc_tokens, t_config *config, int *current_line_done)
         fill_color(config, F, rgb, current_line_done);
     else if (ft_strcmp(fc_tokens[0], "C") == 0)
         fill_color(config, C, rgb, current_line_done);
-    if (!(*current_line_done))
-        return (0);
-    return (1);
+    return (*current_line_done);
 }

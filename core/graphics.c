@@ -43,6 +43,6 @@ void    init_game(t_game *game)
     mlx_hook(game->win_ptr, 2, 1L<<0, key_handler, game);
     mlx_hook(game->win_ptr, 6, 1L<<6, track_mouse_pos, game);
     mlx_hook(game->win_ptr, 4, 1L<<2, track_mouse_click, game);
-    mlx_hook(game->win_ptr, 17, 0, (void *)exit, 0);
+    mlx_hook(game->win_ptr, 17, 0, handle_exit, game);
     mlx_loop(game->mlx_ptr);
 }
