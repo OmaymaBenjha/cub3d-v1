@@ -8,7 +8,7 @@ static int process_config_line(char **s_line, t_game *game, char *line)
     if (ft_strcmp(s_line[0], "NO") == 0 || ft_strcmp(s_line[0], "SO") == 0 ||
         ft_strcmp(s_line[0], "EA") == 0 || ft_strcmp(s_line[0], "WE") == 0)
     {
-        if (!process_tex(s_line, &game->config, &current_line_done))
+        if (!process_tex(s_line, &game->config, &current_line_done, line))
             return (0);
     }
     else if (ft_strcmp(s_line[0], "F") == 0 || ft_strcmp(s_line[0], "C") == 0)

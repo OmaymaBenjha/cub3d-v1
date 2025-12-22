@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_config_fc.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/22 12:26:49 by oben-jha          #+#    #+#             */
+/*   Updated: 2025/12/22 12:26:49 by oben-jha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
 static t_color get_representation(char **tokens, int *line)
 {
     t_color c;
@@ -35,7 +48,7 @@ static void    fill_color(t_config *config, t_co_type type, char **rgb_tokens, i
     {   if (config->f_has_been_set == 1)
         {
             printf("Error\nDuplicate F rgb representation!\n");
-            line =0;
+            *line = 0;
         }
         config->f_color = tmp_color;
         if (line)
@@ -47,13 +60,13 @@ static void    fill_color(t_config *config, t_co_type type, char **rgb_tokens, i
         if (config->c_has_been_set == 1)
         {
             printf("Error\nDuplicate C rgb representation!\n");
-            line =0;
+            *line = 0;
         }
         config->c_color = tmp_color;
         if (line)
             config->c_has_been_set++;
     }    
-    if (line == 0)
+    if (*line == 0)
         return;
 }
 
@@ -69,6 +82,8 @@ static int not_valid_num(char **rgb)
         while (rgb[i][j])
         {
             if (!ft_isdigit(rgb[i][j]) && rgb[i][j] != ' ')
+                return(printf("Error\nInvalid rgb representation: %s\n", rgb[i]), 0);
+            if ( j != 0 && ft_isdigit(rgb[i][j - 1]) && rgb[i][j] == ' ' && rgb[i][j + 1])
                 return(printf("Error\nInvalid rgb representation: %s\n", rgb[i]), 0);
             j++;
         }

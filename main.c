@@ -9,7 +9,7 @@ int main(int ac, char **av)
     if (!pre_check(ac, av))
         return (0);
     if (main_trigger(av[1], &game) == 0)
-        return (1);
+        return (gc_freed(), 1);
     get_player_cord(&game);
     make_map_rectangular(&game);
     init_game(&game);

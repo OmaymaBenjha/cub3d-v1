@@ -195,7 +195,7 @@ void       *gc_mall(size_t size);
 // map checking and parsing --------------------------------
 int         pre_check(int ac, char **av);
 int         main_trigger(char *map, t_game *game);
-int         process_tex(char **tex_tokens, t_config *config, int *current_line_done);
+int         process_tex(char **tex_tokens, t_config *config, int *current_line_done, char *line);
 int         process_fc(char **fc_tokens, t_config *config, int *current_line_done);
 int         is_player_char(char c);
 int         process_map(char *line, t_game *game);
