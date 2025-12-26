@@ -1,7 +1,7 @@
 #include "cub3d.h"
 int is_map_char(char c)
 {
-    return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ');
+    return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ' || c == 'D');
 }
 
 int is_player_char(char c)

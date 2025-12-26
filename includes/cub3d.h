@@ -19,15 +19,17 @@
 #define KEY_D 100
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
+#define	KEY_SPACE 32
 
 #define MOVESPEED 0.1
 #define ROTSPEED 0.1
 
 #define WIDTH 1920
 #define HEIGHT 1080
-#define BG_PATH "textures/menu/bg.xpm"
-#define S_PATH  "textures/menu/s.xpm"
-#define E_PATH  "textures/menu/ex.xpm"
+#define BG_PATH "assets/textures/menu/bg.xpm"
+#define S_PATH  "assets/textures/menu/s.xpm"
+#define E_PATH  "assets/textures/menu/ex.xpm"
+#define DOOR_PATH "assets/textures/door.xpm"
 
 typedef struct s_gc_node
 {
@@ -134,10 +136,14 @@ typedef struct s_game
     t_img       tex_south;
     t_img       tex_west;
     t_img       tex_east;
+	t_img		tex_door;
     int         game_state;
     t_menu      menu;
     int         mouse_x;
     int         mouse_y;
+	int			door_state;
+	int opened_door_x;
+int opened_door_y;
 } t_game;
 
 typedef struct s_wall
@@ -163,6 +169,7 @@ typedef struct s_ray
     int         stepX;
     int         stepY;
     int         hit;
+	int			hit_do;
     int         side; 
     int         lineHeight;
     int         drawStart;
@@ -224,4 +231,6 @@ unsigned    int get_tex_color(t_img *tex, int x, int y);
 int check_mouse_event_bound(t_game *game, t_rect rect);
 int track_mouse_click(int button, int x, int y, t_game *game);
 int    handle_exit(t_game *game);
+void toggle_door(t_game *game);
+
 #endif

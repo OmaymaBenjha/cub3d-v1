@@ -108,6 +108,7 @@ static void initiate_game_struct(t_game *game)
     game->menu.start_rect.y = HEIGHT / 2 ;
     game->menu.exit_rect.x = WIDTH / 2 + 40;
     game->menu.exit_rect.y = HEIGHT / 2;
+	game->door_state = 0;
     
 }
 
@@ -134,7 +135,7 @@ int main_trigger(char *map, t_game *game)
     initiate_game_struct(game);
     fd = open(map, O_RDONLY);
     if (fd < 0)
-        (perror("open"), exit(EXIT_FAILURE));
+        (perror("openfff"), exit(EXIT_FAILURE));
     line = get_next_line(fd);
     while (line != NULL)
     {

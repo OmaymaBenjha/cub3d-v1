@@ -6,6 +6,8 @@ int key_handler(int keycode, t_game *game)
     {
         handle_exit(game);
     }
+	if (keycode == KEY_SPACE)
+    	toggle_door(game);
     if (keycode == KEY_W)
         move_forward(game);
     if (keycode == KEY_S)

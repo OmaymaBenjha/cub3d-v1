@@ -17,5 +17,6 @@
 
 int	mouse_rotate_bonus(int x, int y, t_game *game);
 int	track_mouse_click_bonus(int button, int x, int y, t_game *game);
+void toggle_door(t_game *game);
 
 #endif

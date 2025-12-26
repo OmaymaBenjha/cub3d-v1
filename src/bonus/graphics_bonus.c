@@ -54,6 +54,7 @@ void	init_game(t_game *game)
 	load_texture(game, &game->menu.bg, BG_PATH);
 	load_texture(game, &game->menu.btn_exit, E_PATH);
 	load_texture(game, &game->menu.btn_start, S_PATH);
+	load_texture(game, &game->tex_door, DOOR_PATH);
 	mlx_loop_hook(game->mlx_ptr, render_frame, game);
 	mlx_hook(game->win_ptr, 2, 1L << 0, key_handler, game);
 	mlx_hook(game->win_ptr, 6, 1L << 6, mouse_rotate_bonus, game);

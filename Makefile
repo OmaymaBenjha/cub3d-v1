@@ -1,6 +1,6 @@
 NAME = cub3d
 NAME_BONUS = cub3d_bonus
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
@@ -8,58 +8,58 @@ MLX_PATH = ./minilibx-linux
 MLX_NAME = mlx
 MLX_LIB  = $(MLX_PATH)/libmlx.a
 
-INCLUDES = -I. -I$(MLX_PATH)
+INCLUDES = -Iincludes -I$(MLX_PATH)
 
 MLX_FLAGS = -L$(MLX_PATH) -l$(MLX_NAME) -lXext -lX11 -lm -lz
 
 SRCS =	main.c \
-		core/graphics.c \
-		core/drawing.c \
-		core/raycasting.c \
-		core/inputs.c \
-		core/moves.c \
-		core/moves1.c \
-		core/welcome_page.c \
-		core/cleanup.c \
-		logic_parsing/check_args.c \
-		logic_parsing/fetch_map.c \
-		logic_parsing/map_config_fc.c \
-		logic_parsing/map_config_tex.c \
-		logic_parsing/map_data.c \
-		logic_parsing/map_data_helper.c \
-		logic_parsing/player_cord.c \
-		logic_parsing/final_map.c \
-		tools/strings/strings1.c \
-		tools/strings/strings2.c \
-		tools/strings/strings3.c \
-		tools/get_next_line.c \
-		tools/garbage_collector/gc_mall.c \
-		tools/garbage_collector/gc_mall2.c
+		src/mandatory/graphics.c \
+		src/mandatory/drawing.c \
+		src/mandatory/raycasting.c \
+		src/controls/inputs.c \
+		src/controls/moves.c \
+		src/controls/moves1.c \
+		src/welcome_page.c \
+		src/tools/cleanup.c \
+		src/logic_parsing/check_args.c \
+		src/logic_parsing/fetch_map.c \
+		src/logic_parsing/map_config_fc.c \
+		src/logic_parsing/map_config_tex.c \
+		src/logic_parsing/map_data.c \
+		src/logic_parsing/map_data_helper.c \
+		src/logic_parsing/player_cord.c \
+		src/logic_parsing/final_map.c \
+		src/tools/strings/strings1.c \
+		src/tools/strings/strings2.c \
+		src/tools/strings/strings3.c \
+		src/tools/get_next_line.c \
+		src/tools/garbage_collector/gc_mall.c \
+		src/tools/garbage_collector/gc_mall2.c
 
 SRCS_BONUS = main.c \
-		core/graphics_bonus.c \
-		core/mouse_bonus.c \
-		core/drawing.c \
-		core/raycasting.c \
-		core/inputs.c \
-		core/moves.c \
-		core/moves1.c \
-		core/welcome_page.c \
-		core/cleanup.c \
-		logic_parsing/check_args.c \
-		logic_parsing/fetch_map.c \
-		logic_parsing/map_config_fc.c \
-		logic_parsing/map_config_tex.c \
-		logic_parsing/map_data.c \
-		logic_parsing/map_data_helper.c \
-		logic_parsing/player_cord.c \
-		logic_parsing/final_map.c \
-		tools/strings/strings1.c \
-		tools/strings/strings2.c \
-		tools/strings/strings3.c \
-		tools/get_next_line.c \
-		tools/garbage_collector/gc_mall.c \
-		tools/garbage_collector/gc_mall2.c
+		src/bonus/graphics_bonus.c \
+		src/bonus/mouse_bonus.c \
+		src/bonus/drawing_bonus.c \
+		src/bonus/raycasting_bonus.c \
+		src/controls/inputs.c \
+		src/controls/moves.c \
+		src/controls/moves1.c \
+		src/welcome_page.c \
+		src/tools/cleanup.c \
+		src/logic_parsing/check_args.c \
+		src/logic_parsing/fetch_map.c \
+		src/logic_parsing/map_config_fc.c \
+		src/logic_parsing/map_config_tex.c \
+		src/logic_parsing/map_data.c \
+		src/logic_parsing/map_data_helper.c \
+		src/logic_parsing/player_cord.c \
+		src/logic_parsing/final_map.c \
+		src/tools/strings/strings1.c \
+		src/tools/strings/strings2.c \
+		src/tools/strings/strings3.c \
+		src/tools/get_next_line.c \
+		src/tools/garbage_collector/gc_mall.c \
+		src/tools/garbage_collector/gc_mall2.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
@@ -75,7 +75,7 @@ $(NAME): $(OBJS)
 bonus: $(MLX_LIB) $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(MLX_FLAGS) -o $(NAME_BONUS)
 
-%.o: %.c cub3d.h
+%.o: %.c includes/cub3d.h includes/cub3d_bonus.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
