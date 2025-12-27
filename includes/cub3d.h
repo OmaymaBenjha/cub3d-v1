@@ -210,16 +210,26 @@ char        *gc_strjoin(char const *s1, char const *s2);
 void       *gc_mall(size_t size);
 
 // map checking and parsing --------------------------------
-int         pre_check(int ac, char **av);
-int         main_trigger(char *map, t_game *game);
-int         process_tex(char **tex_tokens, t_config *config, int *current_line_done, char *line);
-int         process_fc(char **fc_tokens, t_config *config, int *current_line_done);
-int         is_p_char(char c);
-int         process_map(char *line, t_game *game);
-int         check_map_closed(t_game *game);
-int         is_map_char(char c);
-void        get_p_cord(t_game *game);
-void        make_map_rectangular(t_game *game);
+int		pre_check(int ac, char **av);
+int		main_trigger(char *map, t_game *game);
+int		process_tex(char **tex_tokens, t_config *config,
+			int *current_line_done, char *line);
+int		process_fc(char **fc_tokens, t_config *config,
+			int *current_line_done);
+int		is_p_char(char c);
+int		process_map(char *line, t_game *game);
+int		check_map_closed(t_game *game);
+int		is_map_char(char c);
+void	get_p_cord(t_game *game);
+void	make_map_rectangular(t_game *game);
+int		is_empty(char *line);
+int		ft_isspace(char c);
+int		check_game_map_state(t_game *game);
+void	initiate_game_struct(t_game *game);
+int		validate_map_content(char **s_line, char *line);
+char	*join_tokens(char **tokens);
+int		not_valid_num(char **rgb);
+t_color	get_representation(char **tokens, int *line);
 
 // game core ---------------------------------------------
 
