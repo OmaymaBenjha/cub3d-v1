@@ -14,8 +14,8 @@ C    76, 187, 217
    WE ./assets/textures/wall.xpm
   EA   ./assets/textures/wall.xpm
 
-NO ./assets/textures/wall1 .xpm
-SO ./assets/textures/wall1 .xpm
+NO ./assets/textures/wall1.xpm
+SO ./assets/textures/wall1.xpm
 
 
 

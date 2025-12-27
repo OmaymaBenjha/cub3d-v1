@@ -46,8 +46,10 @@ int	not_valid_num(char **rgb)
 	while (rgb[i] != NULL)
 	{
 		if (!is_valid_digit(rgb[i]))
+		{
 			printf("Error\nInvalid rgb representation: %s\n", rgb[i]);
-		return (0);
+			return (0);
+		}
 		i++;
 	}
 	return (1);
