@@ -12,21 +12,21 @@
 
 #include "cub3d.h"
 
-static void	rotate_player(t_game *game, double speed)
+static void	rotate_p(t_game *game, double speed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = game->player.dirX;
-	old_plane_x = game->player.planeX;
-	game->player.dirX = game->player.dirX * cos(speed)
-		- game->player.dirY * sin(speed);
-	game->player.dirY = old_dir_x * sin(speed)
-		+ game->player.dirY * cos(speed);
-	game->player.planeX = game->player.planeX * cos(speed)
-		- game->player.planeY * sin(speed);
-	game->player.planeY = old_plane_x * sin(speed)
-		+ game->player.planeY * cos(speed);
+	old_dir_x = game->p.dirX;
+	old_plane_x = game->p.planeX;
+	game->p.dirX = game->p.dirX * cos(speed)
+		- game->p.dirY * sin(speed);
+	game->p.dirY = old_dir_x * sin(speed)
+		+ game->p.dirY * cos(speed);
+	game->p.planeX = game->p.planeX * cos(speed)
+		- game->p.planeY * sin(speed);
+	game->p.planeY = old_plane_x * sin(speed)
+		+ game->p.planeY * cos(speed);
 }
 
 int	mouse_rotate_bonus(int x, int y, t_game *game)
@@ -41,7 +41,7 @@ int	mouse_rotate_bonus(int x, int y, t_game *game)
 	if (x != center_x)
 	{
 		rot_speed = (x - center_x) * 0.0005;
-		rotate_player(game, rot_speed);
+		rotate_p(game, rot_speed);
 		mlx_mouse_move(game->mlx_ptr, game->win_ptr, center_x, HEIGHT / 2);
 	}
 	return (0);

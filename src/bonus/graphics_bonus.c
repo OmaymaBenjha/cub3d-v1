@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student                                    +#+  +:+       +#+        */
+/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 23:00:00 by student           #+#    #+#             */
-/*   Updated: 2025/12/25 23:00:00 by student          ###   ########.fr       */
+/*   Created: 2025/12/26 22:14:39 by oben-jha          #+#    #+#             */
+/*   Updated: 2025/12/26 22:14:39 by oben-jha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ static void	load_texture(t_game *game, t_img *tex, char *path)
 			&tex->line_len, &tex->endian);
 }
 
+static void	mlx_hooks_calls(t_game *game)
+{
+	mlx_loop_hook(game->mlx_ptr, render_frame, game);
+	mlx_hook(game->win_ptr, 2, 1L << 0, key_handler, game);
+	mlx_hook(game->win_ptr, 6, 1L << 6, mouse_rotate_bonus, game);
+	mlx_hook(game->win_ptr, 4, 1L << 2, track_mouse_click_bonus, game);
+	mlx_hook(game->win_ptr, 17, 0, handle_exit, game);
+}
+
 void	init_game(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
@@ -55,10 +64,6 @@ void	init_game(t_game *game)
 	load_texture(game, &game->menu.btn_exit, E_PATH);
 	load_texture(game, &game->menu.btn_start, S_PATH);
 	load_texture(game, &game->tex_door, DOOR_PATH);
-	mlx_loop_hook(game->mlx_ptr, render_frame, game);
-	mlx_hook(game->win_ptr, 2, 1L << 0, key_handler, game);
-	mlx_hook(game->win_ptr, 6, 1L << 6, mouse_rotate_bonus, game);
-	mlx_hook(game->win_ptr, 4, 1L << 2, track_mouse_click_bonus, game);
-	mlx_hook(game->win_ptr, 17, 0, handle_exit, game);
+	mlx_hooks_calls(game);
 	mlx_loop(game->mlx_ptr);
 }

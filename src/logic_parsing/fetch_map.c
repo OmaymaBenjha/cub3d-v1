@@ -95,7 +95,7 @@ static void initiate_game_struct(t_game *game)
     game->map_width = 0;
     game->map_height = 0;
     game->map_ended = 0;
-    game->player_count = 0;
+    game->p_count = 0;
     game->config.c_has_been_set = 0;
     game->config.f_has_been_set = 0;
     game->map_exist = 0;
@@ -108,14 +108,14 @@ static void initiate_game_struct(t_game *game)
     game->menu.start_rect.y = HEIGHT / 2 ;
     game->menu.exit_rect.x = WIDTH / 2 + 40;
     game->menu.exit_rect.y = HEIGHT / 2;
-	game->door_state = 0;
+	// game->door_state = 0;
     
 }
 
 static int check_game_map_state(t_game *game)
 {
-    if (game->player_count == 0 && game->map_exist)
-        return(printf("Error\nPlayer starting position is missing in the map.\nTry: S/N/W/E.\n"),0);
+    if (game->p_count == 0 && game->map_exist)
+        return(printf("Error\np starting position is missing in the map.\nTry: S/N/W/E.\n"),0);
     if (game->config.all_done == 0 && !game->map_started)
         return (printf("Map file cannot be empty!\n"), 0);
     if (game->config.all_done < 6)

@@ -27,7 +27,7 @@ static  void wall_and_tex_starting_pos(t_ray *ray, t_game *game,
         ray->drawEnd = HEIGHT - 1;
     if (ray->side == 0)
     {
-        (*wallX) = game->player.posY + ray->perpWallDist * ray->rayDirY;
+        (*wallX) = game->p.posY + ray->perpWallDist * ray->rayDirY;
         if (ray->rayDirX > 0)
             *current_tex = &game->tex_east;
         else
@@ -35,7 +35,7 @@ static  void wall_and_tex_starting_pos(t_ray *ray, t_game *game,
     }
     else
     {
-        (*wallX) = game->player.posX + ray->perpWallDist * ray->rayDirX;
+        (*wallX) = game->p.posX + ray->perpWallDist * ray->rayDirX;
         if (ray->rayDirY > 0)
             *current_tex = &game->tex_south;
         else 

@@ -1,80 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/27 00:26:15 by oben-jha          #+#    #+#             */
+/*   Updated: 2025/12/27 00:26:15 by oben-jha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "cub3d_bonus.h"
 
-void move_forward(t_game *game)
+void	move_forward(t_game *game)
 {
-    int old_x = (int)game->player.posX;
-    int old_y = (int)game->player.posY;
-    double new_x = game->player.posX + game->player.dirX * MOVESPEED;
-    double new_y = game->player.posY + game->player.dirY * MOVESPEED;
-    if (game->map[(int)game->player.posY][(int)new_x] != '1' && game->map[(int)game->player.posY][(int)new_x] != 'D')
-        game->player.posX = new_x;
-    if (game->map[(int)new_y][(int)game->player.posX] != '1' && game->map[(int)new_y][(int)game->player.posX] != 'D')
-        game->player.posY = new_y;
-    if ((int)game->player.posX != old_x || (int)game->player.posY != old_y)
-    {
-        if (game->map[old_y][old_x] == 'O')
-            game->map[old_y][old_x] = 'D';
-    }
-}
-void move_backward(t_game *game)
-{
-    int old_x = (int)game->player.posX;
-    int old_y = (int)game->player.posY;
-    double new_x = game->player.posX - game->player.dirX * MOVESPEED;
-    double new_y = game->player.posY - game->player.dirY * MOVESPEED;
 
-    if (game->map[(int)game->player.posY][(int)new_x] != '1' && 
-        game->map[(int)game->player.posY][(int)new_x] != 'D')
-        game->player.posX = new_x;
-    if (game->map[(int)new_y][(int)game->player.posX] != '1' && 
-        game->map[(int)new_y][(int)game->player.posX] != 'D')
-        game->player.posY = new_y;
+	double	new_x;
+	double	new_y;
 
-    if (((int)game->player.posX != old_x || (int)game->player.posY != old_y) 
-        && game->map[old_y][old_x] == 'O')
-        game->map[old_y][old_x] = 'D';
+
+	new_x = game->p.posX + game->p.dirX * MOVESPEED;
+	new_y = game->p.posY + game->p.dirY * MOVESPEED;
+	get_coll_buffer(game, new_x, new_y, '+');
 }
 
-void    rotate_left(t_game *game)
+void	move_backward(t_game *game)
 {
-    double oldDirX = game->player.dirX;
-    double oldPlaneX = game->player.planeX;
 
-    game->player.dirX = game->player.dirX * cos(-ROTSPEED) - game->player.dirY * sin(-ROTSPEED);
-    game->player.dirY = oldDirX * sin(-ROTSPEED) + game->player.dirY * cos(-ROTSPEED);
+	double	new_x;
+	double	new_y;
 
-    game->player.planeX = game->player.planeX * cos(-ROTSPEED) - game->player.planeY * sin(-ROTSPEED);
-    game->player.planeY = oldPlaneX * sin(-ROTSPEED) + game->player.planeY * cos(-ROTSPEED);
+	new_x = game->p.posX - game->p.dirX * MOVESPEED;
+	new_y = game->p.posY - game->p.dirY * MOVESPEED;
+	get_coll_buffer(game, new_x, new_y, '-');
 }
 
-int track_mouse_click(int button, int x, int y, t_game *game)
+void	move_left(t_game *game)
 {
-    game->mouse_x = x;
-    game->mouse_y = y;
-    if (button  == 1 && check_mouse_event_bound(game, game->menu.start_rect))
-    {
-        if (game->game_state == 0)
-            game->game_state = 1;
-    }
-        
-    else if (button  == 1 && check_mouse_event_bound(game, game->menu.exit_rect))
-    {
-        if (game->game_state  == 0)
-            handle_exit(game);
-    }
-    return (0);
-}
-void toggle_door(t_game *game)
-{
-    int target_x = (int)(game->player.posX + game->player.dirX * 1.04);
-    int target_y = (int)(game->player.posY + game->player.dirY * 1.04);
 
-    if (game->map[target_y][target_x] == 'D')
-	{
-		game->map[target_y][target_x] = 'O';
-		// game->door_state = 1;
-	}
-    // if (game->door_state == 1)
-	// 	game->map[target_y][target_x] = 'D';
+	double	new_x;
+	double	new_y;
+
+	
+	new_x = game->p.posX - game->p.planeX * MOVESPEED;
+	new_y = game->p.posY - game->p.planeY * MOVESPEED;
+	get_coll_buffer(game, new_x, new_y, '-');
+}
+
+void	move_right(t_game *game)
+{
+
+	double	new_x;
+	double	new_y;
+
+
+	new_x = game->p.posX + game->p.planeX * MOVESPEED;
+	new_y = game->p.posY + game->p.planeY * MOVESPEED;
+	get_coll_buffer(game, new_x, new_y, '+');
 }

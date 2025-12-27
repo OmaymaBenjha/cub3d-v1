@@ -16,22 +16,22 @@ static void ray_dir_and_steps(t_ray *ray, t_game *game)
     if (ray->rayDirX < 0)
     {
         ray->stepX = -1;
-        ray->sideDistX = (game->player.posX - ray->mapX) * ray->deltaDistX;
+        ray->sideDistX = (game->p.posX - ray->mapX) * ray->deltaDistX;
     }
     else
     {
         ray->stepX = 1;
-        ray->sideDistX = (ray->mapX + 1.0 - game->player.posX) * ray->deltaDistX;
+        ray->sideDistX = (ray->mapX + 1.0 - game->p.posX) * ray->deltaDistX;
     }
     if (ray->rayDirY < 0)
     {
         ray->stepY = -1;
-        ray->sideDistY = (game->player.posY - ray->mapY) * ray->deltaDistY;
+        ray->sideDistY = (game->p.posY - ray->mapY) * ray->deltaDistY;
     }
     else
     {
         ray->stepY = 1;
-        ray->sideDistY = (ray->mapY + 1.0 - game->player.posY) * ray->deltaDistY;
+        ray->sideDistY = (ray->mapY + 1.0 - game->p.posY) * ray->deltaDistY;
     }
 }
 
@@ -70,10 +70,10 @@ void raycasting_engine(t_game *game)
     while (x < WIDTH)
     {
         ray.cameraX = 2 * x / (double)WIDTH - 1;
-        ray.rayDirX = game->player.dirX + game->player.planeX * ray.cameraX;
-        ray.rayDirY = game->player.dirY + game->player.planeY * ray.cameraX;
-        ray.mapX = (int)game->player.posX;
-        ray.mapY = (int)game->player.posY;
+        ray.rayDirX = game->p.dirX + game->p.planeX * ray.cameraX;
+        ray.rayDirY = game->p.dirY + game->p.planeY * ray.cameraX;
+        ray.mapX = (int)game->p.posX;
+        ray.mapY = (int)game->p.posY;
         ray_dir_and_steps(&ray, game);
         detect_wall_hit(&ray, game);
         drawing_engin(&ray, game, x);

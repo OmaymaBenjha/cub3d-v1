@@ -1,61 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves1.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/27 00:26:28 by oben-jha          #+#    #+#             */
+/*   Updated: 2025/12/27 01:17:41 by oben-jha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-
-void    rotate_right(t_game *game)
+void	rotate_right(t_game *game)
 {
-    double oldDirX = game->player.dirX;
-    double oldPlaneX = game->player.planeX;
+	double	old_dirx;
+	double	old_planex;
 
-    game->player.dirX = game->player.dirX * cos(ROTSPEED) - game->player.dirY * sin(ROTSPEED);
-    game->player.dirY = oldDirX * sin(ROTSPEED) + game->player.dirY * cos(ROTSPEED);
-
-    game->player.planeX = game->player.planeX * cos(ROTSPEED) - game->player.planeY * sin(ROTSPEED);
-    game->player.planeY = oldPlaneX * sin(ROTSPEED) + game->player.planeY * cos(ROTSPEED);
+	old_dirx = game->p.dirX;
+	old_planex = game->p.planeX;
+	game->p.dirX = game->p.dirX * cos(RS) - game->p.dirY * sin(RS);
+	game->p.dirY = old_dirx * sin(RS) + game->p.dirY * cos(RS);
+	game->p.planeX = game->p.planeX * cos(RS) - game->p.planeY * sin(RS);
+	game->p.planeY = old_planex * sin(RS) + game->p.planeY * cos(RS);
 }
 
-void move_left(t_game *game)
+void	rotate_left(t_game *game)
 {
-    int old_x = (int)game->player.posX;
-    int old_y = (int)game->player.posY;
-    double new_x = game->player.posX - game->player.planeX * MOVESPEED;
-    double new_y = game->player.posY - game->player.planeY * MOVESPEED;
+	double	old_dirx;
+	double	old_planex;
 
-    if (game->map[(int)game->player.posY][(int)new_x] != '1' && 
-        game->map[(int)game->player.posY][(int)new_x] != 'D')
-        game->player.posX = new_x;
-    if (game->map[(int)new_y][(int)game->player.posX] != '1' && 
-        game->map[(int)new_y][(int)game->player.posX] != 'D')
-        game->player.posY = new_y;
-
-    if (((int)game->player.posX != old_x || (int)game->player.posY != old_y) 
-        && game->map[old_y][old_x] == 'O')
-        game->map[old_y][old_x] = 'D';
+	old_dirx = game->p.dirX;
+	old_planex = game->p.planeX;
+	game->p.dirX = game->p.dirX * cos(-RS) - game->p.dirY * sin(-RS);
+	game->p.dirY = old_dirx * sin(-RS) + game->p.dirY * cos(-RS);
+	game->p.planeX = game->p.planeX * cos(-RS) - game->p.planeY * sin(-RS);
+	game->p.planeY = old_planex * sin(-RS) + game->p.planeY * cos(-RS);
 }
 
-
-void move_right(t_game *game)
+int	track_mouse_click(int button, int x, int y, t_game *game)
 {
-    int old_x = (int)game->player.posX;
-    int old_y = (int)game->player.posY;
-    double new_x = game->player.posX + game->player.planeX * MOVESPEED;
-    double new_y = game->player.posY + game->player.planeY * MOVESPEED;
-
-    if (game->map[(int)game->player.posY][(int)new_x] != '1' && 
-        game->map[(int)game->player.posY][(int)new_x] != 'D')
-        game->player.posX = new_x;
-    if (game->map[(int)new_y][(int)game->player.posX] != '1' && 
-        game->map[(int)new_y][(int)game->player.posX] != 'D')
-        game->player.posY = new_y;
-
-    if (((int)game->player.posX != old_x || (int)game->player.posY != old_y) 
-        && game->map[old_y][old_x] == 'O')
-        game->map[old_y][old_x] = 'D';
+	game->mouse_x = x;
+	game->mouse_y = y;
+	if (button == 1)
+	{
+		if (check_mouse_event_bound(game, game->menu.start_rect))
+		{
+			if (game->game_state == 0)
+				game->game_state = 1;
+		}
+	}
+	else if (button == 1)
+	{
+		if (check_mouse_event_bound(game, game->menu.exit_rect))
+		{
+			if (game->game_state == 0)
+				handle_exit(game);
+		}
+	}
+	return (0);
 }
 
-int track_mouse_pos(int x, int y, t_game *game)
+int	track_mouse_pos(int x, int y, t_game *game)
 {
-    game->mouse_x = x;
-    game->mouse_y = y;
-
-    return (0);
+	game->mouse_x = x;
+	game->mouse_y = y;
+	return (0);
 }

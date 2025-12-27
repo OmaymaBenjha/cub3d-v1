@@ -16,18 +16,19 @@ SRCS =	main.c \
 		src/mandatory/graphics.c \
 		src/mandatory/drawing.c \
 		src/mandatory/raycasting.c \
+		src/mandatory/map_data.c \
 		src/controls/inputs.c \
 		src/controls/moves.c \
 		src/controls/moves1.c \
+		src/controls/moves_helper.c \
 		src/welcome_page.c \
 		src/tools/cleanup.c \
 		src/logic_parsing/check_args.c \
 		src/logic_parsing/fetch_map.c \
 		src/logic_parsing/map_config_fc.c \
 		src/logic_parsing/map_config_tex.c \
-		src/logic_parsing/map_data.c \
 		src/logic_parsing/map_data_helper.c \
-		src/logic_parsing/player_cord.c \
+		src/logic_parsing/p_cord.c \
 		src/logic_parsing/final_map.c \
 		src/tools/strings/strings1.c \
 		src/tools/strings/strings2.c \
@@ -39,20 +40,21 @@ SRCS =	main.c \
 SRCS_BONUS = main.c \
 		src/bonus/graphics_bonus.c \
 		src/bonus/mouse_bonus.c \
+		src/bonus/map_data_bonus.c \
 		src/bonus/drawing_bonus.c \
 		src/bonus/raycasting_bonus.c \
 		src/controls/inputs.c \
 		src/controls/moves.c \
 		src/controls/moves1.c \
+		src/controls/moves_helper.c \
 		src/welcome_page.c \
 		src/tools/cleanup.c \
 		src/logic_parsing/check_args.c \
 		src/logic_parsing/fetch_map.c \
 		src/logic_parsing/map_config_fc.c \
 		src/logic_parsing/map_config_tex.c \
-		src/logic_parsing/map_data.c \
 		src/logic_parsing/map_data_helper.c \
-		src/logic_parsing/player_cord.c \
+		src/logic_parsing/p_cord.c \
 		src/logic_parsing/final_map.c \
 		src/tools/strings/strings1.c \
 		src/tools/strings/strings2.c \

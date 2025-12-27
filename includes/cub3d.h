@@ -22,10 +22,12 @@
 #define	KEY_SPACE 32
 
 #define MOVESPEED 0.1
-#define ROTSPEED 0.1
+#define RS 0.1
 
 #define WIDTH 1920
 #define HEIGHT 1080
+#define COL_BUF 0.2
+#define COL_BUF 0.2
 #define BG_PATH "assets/textures/menu/bg.xpm"
 #define S_PATH  "assets/textures/menu/s.xpm"
 #define E_PATH  "assets/textures/menu/ex.xpm"
@@ -91,7 +93,7 @@ typedef struct s_config
     t_co_type   type;
 } t_config;
 
-typedef struct s_player
+typedef struct s_p
 {
     double  posX;
     double  posY;
@@ -99,7 +101,7 @@ typedef struct s_player
     double  dirY;
     double  planeX;
     double  planeY;
-}   t_player;
+}   t_p;
 
 typedef struct s_rect
 {
@@ -118,6 +120,14 @@ typedef struct s_menu
     t_rect  exit_rect;
 } t_menu;
 
+typedef struct s_door
+{
+	int	x;
+	int	y;
+	int	state;
+	struct s_door	*next;
+} t_door;
+
 typedef struct s_game
 {
     void        *mlx_ptr;
@@ -129,9 +139,9 @@ typedef struct s_game
     size_t      map_height;
     int         map_started;
     int         map_ended;
-    int         player_count;
+    int         p_count;
     int         map_exist;
-    t_player    player;
+    t_p    p;
     t_img       tex_north;
     t_img       tex_south;
     t_img       tex_west;
@@ -141,9 +151,7 @@ typedef struct s_game
     t_menu      menu;
     int         mouse_x;
     int         mouse_y;
-	int			door_state;
-	int opened_door_x;
-int opened_door_y;
+	t_door		*doors;
 } t_game;
 
 typedef struct s_wall
@@ -204,11 +212,11 @@ int         pre_check(int ac, char **av);
 int         main_trigger(char *map, t_game *game);
 int         process_tex(char **tex_tokens, t_config *config, int *current_line_done, char *line);
 int         process_fc(char **fc_tokens, t_config *config, int *current_line_done);
-int         is_player_char(char c);
+int         is_p_char(char c);
 int         process_map(char *line, t_game *game);
 int         check_map_closed(t_game *game);
 int         is_map_char(char c);
-void        get_player_cord(t_game *game);
+void        get_p_cord(t_game *game);
 void        make_map_rectangular(t_game *game);
 
 // game core ---------------------------------------------
@@ -232,5 +240,6 @@ int check_mouse_event_bound(t_game *game, t_rect rect);
 int track_mouse_click(int button, int x, int y, t_game *game);
 int    handle_exit(t_game *game);
 void toggle_door(t_game *game);
+void	get_coll_buffer(t_game *game, double new_x, double new_y, char op);
 
 #endif

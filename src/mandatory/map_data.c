@@ -1,10 +1,10 @@
 #include "cub3d.h"
 int is_map_char(char c)
 {
-    return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ' || c == 'D');
+    return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ');
 }
 
-int is_player_char(char c)
+int is_p_char(char c)
 {
     return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
@@ -57,18 +57,18 @@ static int validate_map_line(char *line, t_game *game)
     {
         if (!is_map_char(line[i]))
             return (printf("Error\nInvalid character in map: '%c'\n", line[i]), 0);
-        if (is_player_char(line[i]))
+        if (is_p_char(line[i]))
         {
-            game->player_count++;
-            if (game->player_count > 1)
-                return (printf("Error\nOnly one player start position is allowed in the map.\n"), 0);
+            game->p_count++;
+            if (game->p_count > 1)
+                return (printf("Error\nOnly one p start position is allowed in the map.\n"), 0);
         }
-        if (line[i] == '0' || is_player_char(line[i]))
+        if (line[i] == '0' || is_p_char(line[i]))
         {
             if (i > 0 && line[i - 1] == ' ')
-                return (printf("Error\n'0' or player character surrounded by space on left.\n"), 0);
+                return (printf("Error\n'0' or p character surrounded by space on left.\n"), 0);
             if (line[i + 1] == ' ')
-                return (printf("Error\n'0' or player character surrounded by space on right.\n"), 0);
+                return (printf("Error\n'0' or p character surrounded by space on right.\n"), 0);
         }
         i++;
     }
