@@ -39,7 +39,7 @@ static void	get_current_tx(t_game *game, t_ray *ray, double *wallX,
 		else
 			*tx = &game->tex_west;
 	}
-	else
+else
 	{
 		*wallX = game->p.posX + ray->perpWallDist * ray->rayDirX;
 		if (ray->rayDirY > 0)

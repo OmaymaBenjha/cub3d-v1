@@ -44,6 +44,7 @@ static void	mlx_hooks_calls(t_game *game)
 
 void	init_game(t_game *game)
 {
+	game->mouse_locked = 1;
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		(printf("MLX couldn't connect to the system's graphics\n"), exit(1));

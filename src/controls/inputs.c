@@ -18,6 +18,14 @@ int	key_handler(int keycode, t_game *game)
 	{
 		handle_exit(game);
 	}
+	if (keycode == KEY_ALT)
+	{
+		game->mouse_locked = !game->mouse_locked;
+		if (game->mouse_locked)
+			mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
+		else
+			mlx_mouse_show(game->mlx_ptr, game->win_ptr);
+	}
 	if (keycode == KEY_SPACE)
 		toggle_door(game);
 	if (keycode == KEY_W)

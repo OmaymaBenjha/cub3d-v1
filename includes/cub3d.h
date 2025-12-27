@@ -20,6 +20,7 @@
 #define KEY_LEFT 65361
 #define KEY_RIGHT 65363
 #define	KEY_SPACE 32
+#define KEY_ALT 65513
 
 #define MOVESPEED 0.1
 #define RS 0.1
@@ -152,6 +153,7 @@ typedef struct s_game
     int         mouse_x;
     int         mouse_y;
 	t_door		*doors;
+	int			mouse_locked;
 } t_game;
 
 typedef struct s_wall

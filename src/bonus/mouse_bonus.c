@@ -35,7 +35,7 @@ int	mouse_rotate_bonus(int x, int y, t_game *game)
 	double	rot_speed;
 
 	(void)y;
-	if (game->game_state != 1)
+	if (game->game_state != 1 || !game->mouse_locked)
 		return (0);
 	center_x = WIDTH / 2;
 	if (x != center_x)
