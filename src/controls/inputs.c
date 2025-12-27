@@ -15,9 +15,7 @@
 int	key_handler(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
-	{
 		handle_exit(game);
-	}
 	if (keycode == KEY_ALT)
 	{
 		game->mouse_locked = !game->mouse_locked;

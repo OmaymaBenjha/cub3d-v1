@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_config_tex.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/27 21:54:06 by oben-jha          #+#    #+#             */
+/*   Updated: 2025/12/27 21:54:06 by oben-jha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static char	*get_path(char *line)
@@ -26,6 +38,7 @@ static int	validate_texture_file(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
+		printf("the path is %s\n", path);
 		perror("Error\nCannot open texture path");
 		return (0);
 	}

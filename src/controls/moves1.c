@@ -6,7 +6,7 @@
 /*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 00:26:28 by oben-jha          #+#    #+#             */
-/*   Updated: 2025/12/27 01:17:41 by oben-jha         ###   ########.fr       */
+/*   Updated: 2025/12/27 22:53:52 by oben-jha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ int	track_mouse_click(int button, int x, int y, t_game *game)
 			if (game->game_state == 0)
 				game->game_state = 1;
 		}
-	}
-	else if (button == 1)
-	{
 		if (check_mouse_event_bound(game, game->menu.exit_rect))
 		{
 			if (game->game_state == 0)

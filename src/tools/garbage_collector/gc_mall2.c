@@ -42,11 +42,7 @@ char	**gc_split(char const *s, char c)
 		perror("split failed!");
 		exit(EXIT_FAILURE);
 	}
-
-	// First, add the main array pointer to the garbage collector
 	gc_add_pt(new_arr);
-
-	// Now, crucially, add each string pointer from the array to the collector
 	i = 0;
 	while (new_arr[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 21:42:25 by oben-jha          #+#    #+#             */
-/*   Updated: 2025/12/27 01:06:31 by oben-jha         ###   ########.fr       */
+/*   Updated: 2025/12/27 22:19:34 by oben-jha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	get_current_tx(t_game *game, t_ray *ray, double *wallX,
 		else
 			*tx = &game->tex_west;
 	}
-else
+	else
 	{
 		*wallX = game->p.posX + ray->perpWallDist * ray->rayDirX;
 		if (ray->rayDirY > 0)
