@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_config_tex.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/22 12:26:49 by oben-jha          #+#    #+#             */
-/*   Updated: 2025/12/22 12:26:49 by oben-jha         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 static char	*get_path(char *line)
@@ -50,7 +38,7 @@ static t_textures	get_texture(char **tex_tokens, int *done, char *line)
 	t_textures	t;
 	char		*raw_path;
 
-	ft_memset(&t, 0, sizeof(t_textures));
+	memset(&t, 0, sizeof(t_textures));
 	if (!tex_tokens || !tex_tokens[0] || !tex_tokens[1])
 	{
 		*done = 0;

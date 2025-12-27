@@ -1,22 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_config_fc_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: antigravity <antigravity@student.42.fr>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/26 15:52:00 by antigravity       #+#    #+#             */
-/*   Updated: 2025/12/26 15:52:00 by antigravity      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 t_color	get_representation(char **tokens, int *line)
 {
 	t_color	c;
 
-	ft_memset(&c, 0, sizeof(t_color));
+	memset(&c, 0, sizeof(t_color));
 	if (!tokens[0] || !tokens[1] || !tokens[2])
 	{
 		*line = 0;

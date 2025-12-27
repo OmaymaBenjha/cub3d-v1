@@ -53,7 +53,9 @@ SRCS_BONUS = main.c \
 		src/tools/cleanup.c \
 		src/logic_parsing/check_args.c \
 		src/logic_parsing/fetch_map.c \
+		src/logic_parsing/fetch_map_utils.c \
 		src/logic_parsing/map_config_fc.c \
+		src/logic_parsing/map_config_fc_utils.c \
 		src/logic_parsing/map_config_tex.c \
 		src/logic_parsing/map_data_helper.c \
 		src/logic_parsing/p_cord.c \

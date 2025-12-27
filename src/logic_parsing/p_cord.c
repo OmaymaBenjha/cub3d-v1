@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   p_cord.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/22 12:26:49 by oben-jha          #+#    #+#             */
-/*   Updated: 2025/12/22 12:26:49 by oben-jha         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 static int	is_p_cord_pos(char c)
@@ -72,7 +60,7 @@ void	get_p_cord(t_game *game)
 	size_t	c;
 
 	r = 0;
-	ft_memset(&tmp_p, 0, sizeof(t_p));
+	memset(&tmp_p, 0, sizeof(t_p));
 	while (r < game->map_height)
 	{
 		c = 0;
