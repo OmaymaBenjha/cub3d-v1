@@ -16,8 +16,8 @@
 void	get_coll_buffer(t_game *game, double new_x, double new_y,
 		char op)
 {
-	double	bx;
-	double	by;
+	double	bx = 0;
+	double	by = 0;
 
 	if (op == '-')
 	{
