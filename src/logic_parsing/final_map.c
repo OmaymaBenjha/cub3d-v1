@@ -53,7 +53,7 @@ void	make_map_rectangular(t_game *game)
 			while (++j < game->map_width)
 				new_line[j] = ' ';
 			new_line[j] = '\0';
-			game->map[i] = new_line;
+		game->map[i] = new_line;
 		}
 	}
 }

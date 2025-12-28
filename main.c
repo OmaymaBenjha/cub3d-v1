@@ -23,6 +23,8 @@ int	main(int ac, char **av)
 		return (gc_freed(), 1);
 	get_p_cord(&game);
 	make_map_rectangular(&game);
+	if (!check_map_closed(&game))
+		return (gc_freed(), 1);
 	init_game(&game);
 	gc_freed();
 	return (0);
