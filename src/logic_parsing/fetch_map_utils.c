@@ -3,50 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fetch_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sayt <sayt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/27 21:53:51 by oben-jha          #+#    #+#             */
-/*   Updated: 2025/12/27 21:53:51 by oben-jha         ###   ########.fr       */
+/*   Created: 2025/12/28 02:12:00 by sayt              #+#    #+#             */
+/*   Updated: 2025/12/28 02:12:00 by sayt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_isspace(char c)
+static void	init_menu_vars(t_game *game)
 {
-	return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\f'
-		|| c == '\v');
-}
-
-int	is_empty(char *line)
-{
-	int	i;
-
-	if (!line)
-		return (1);
-	i = 0;
-	while (line[i])
-	{
-		if (!ft_isspace(line[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	initiate_game_struct(t_game *game)
-{
-	game->config.all_done = 0;
-	game->map_started = 0;
-	game->map = NULL;
-	game->map_width = 0;
-	game->map_height = 0;
-	game->map_ended = 0;
-	game->p_count = 0;
-	game->config.c_has_been_set = 0;
-	game->config.f_has_been_set = 0;
-	game->map_exist = 0;
-	game->game_state = 0;
 	game->menu.start_rect.width = 500;
 	game->menu.start_rect.height = 220;
 	game->menu.exit_rect.width = 500;
@@ -65,6 +32,22 @@ void	initiate_game_struct(t_game *game)
 	game->menu.torch_right_rect.height = 296;
 	game->menu.torch_right_rect.x = WIDTH - 340;
 	game->menu.torch_right_rect.y = HEIGHT / 2 + 100;
+}
+
+void	initiate_game_struct(t_game *game)
+{
+	game->config.all_done = 0;
+	game->map_started = 0;
+	game->map = NULL;
+	game->map_width = 0;
+	game->map_height = 0;
+	game->map_ended = 0;
+	game->p_count = 0;
+	game->config.c_has_been_set = 0;
+	game->config.f_has_been_set = 0;
+	game->map_exist = 0;
+	game->game_state = 0;
+	init_menu_vars(game);
 }
 
 int	check_game_map_state(t_game *game)

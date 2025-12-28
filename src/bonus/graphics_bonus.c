@@ -38,8 +38,31 @@ static void	mlx_hooks_calls(t_game *game)
 	mlx_loop_hook(game->mlx_ptr, render_frame, game);
 	mlx_hook(game->win_ptr, 2, 1L << 0, key_handler, game);
 	mlx_hook(game->win_ptr, 6, 1L << 6, mouse_rotate_bonus, game);
-	mlx_hook(game->win_ptr, 4, 1L << 2, track_mouse_click_bonus, game);
 	mlx_hook(game->win_ptr, 17, 0, handle_exit, game);
+}
+
+static void	load_all_textures(t_game *game)
+{
+	load_texture(game, &game->tex_north, game->config.no_tex.path);
+	load_texture(game, &game->tex_south, game->config.so_tex.path);
+	load_texture(game, &game->tex_west, game->config.we_tex.path);
+	load_texture(game, &game->tex_east, game->config.ea_tex.path);
+	load_texture(game, &game->menu.bg, BG_PATH);
+	load_texture(game, &game->menu.btn_exit, E_PATH);
+	load_texture(game, &game->menu.btn_start, S_PATH);
+	load_texture(game, &game->tex_door, DOOR_PATH);
+	load_texture(game, &game->menu.torch[0],
+		"assets/textures/menu/torch_0.xpm");
+	load_texture(game, &game->menu.torch[1],
+		"assets/textures/menu/torch_1.xpm");
+	load_texture(game, &game->menu.torch[2],
+		"assets/textures/menu/torch_2.xpm");
+	load_texture(game, &game->menu.torch[3],
+		"assets/textures/menu/torch_3.xpm");
+	load_texture(game, &game->menu.torch[4],
+		"assets/textures/menu/torch_4.xpm");
+	load_texture(game, &game->menu.torch[5],
+		"assets/textures/menu/torch_5.xpm");
 }
 
 void	init_game(t_game *game)
@@ -57,28 +80,7 @@ void	init_game(t_game *game)
 	game->img_buffer.addr = mlx_get_data_addr(game->img_buffer.img_ptr,
 			&game->img_buffer.bpp, &game->img_buffer.line_len,
 			&game->img_buffer.endian);
-	load_texture(game, &game->tex_north, game->config.no_tex.path);
-	load_texture(game, &game->tex_south, game->config.so_tex.path);
-	load_texture(game, &game->tex_west, game->config.we_tex.path);
-	load_texture(game, &game->tex_east, game->config.ea_tex.path);
-	load_texture(game, &game->menu.bg, BG_PATH);
-	load_texture(game, &game->menu.btn_exit, E_PATH);
-	load_texture(game, &game->menu.btn_start, S_PATH);
-	load_texture(game, &game->tex_door, DOOR_PATH);
-	int i = 0;
-	char *paths[TORCH_FRAMES] = {
-		"assets/textures/menu/torch_0.xpm",
-		"assets/textures/menu/torch_1.xpm",
-		"assets/textures/menu/torch_2.xpm",
-		"assets/textures/menu/torch_3.xpm",
-		"assets/textures/menu/torch_4.xpm",
-		"assets/textures/menu/torch_5.xpm"
-	};
-	while (i < TORCH_FRAMES)
-	{
-		load_texture(game, &game->menu.torch[i], paths[i]);
-		i++;
-	}
+	load_all_textures(game);
 	mlx_hooks_calls(game);
 	mlx_loop(game->mlx_ptr);
 }

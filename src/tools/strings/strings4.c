@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite_casting_bonus.c                             :+:      :+:    :+:   */
+/*   strings4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sayt <sayt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/28 01:50:00 by sayt              #+#    #+#             */
-/*   Updated: 2025/12/28 01:50:00 by sayt             ###   ########.fr       */
+/*   Created: 2025/12/28 02:25:00 by sayt              #+#    #+#             */
+/*   Updated: 2025/12/28 02:25:00 by sayt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
-void	cast_sprites(t_game *game)
+int	ft_isspace(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\f'
+		|| c == '\v');
+}
+
+int	is_empty(char *line)
 {
 	int	i;
 
-	if (game->sprite_count == 0)
-		return ;
-	game->menu.torch_counter++;
-	if (game->menu.torch_counter >= 10)
-	{
-		game->menu.torch_counter = 0;
-		game->menu.torch_frame = (game->menu.torch_frame + 1)
-			% TORCH_FRAMES;
-	}
-	sort_sprites(game);
+	if (!line)
+		return (1);
 	i = 0;
-	while (i < game->sprite_count)
+	while (line[i])
 	{
-		render_sprite(game, &game->sprites[i]);
+		if (!ft_isspace(line[i]))
+			return (0);
 		i++;
 	}
+	return (1);
 }

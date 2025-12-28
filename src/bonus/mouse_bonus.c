@@ -59,7 +59,8 @@ int	track_mouse_click_bonus(int button, int x, int y, t_game *game)
 			{
 				game->game_state = 1;
 				mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
-				mlx_mouse_move(game->mlx_ptr, game->win_ptr, WIDTH / 2, HEIGHT / 2);
+				mlx_mouse_move(game->mlx_ptr, game->win_ptr,
+					WIDTH / 2, HEIGHT / 2);
 			}
 		}
 		if (check_mouse_event_bound(game, game->menu.exit_rect))
