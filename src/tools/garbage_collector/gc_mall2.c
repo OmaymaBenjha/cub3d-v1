@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gc_mall2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sayt <sayt@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 03:40:00 by sayt              #+#    #+#             */
+/*   Updated: 2025/12/28 03:40:00 by sayt             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-
-
 
 void	*gc_mall(size_t size)
 {
@@ -29,6 +39,7 @@ char	*gc_strjoin(char const *s1, char const *s2)
 	gc_add_pt(new_str);
 	return (new_str);
 }
+
 char	**gc_split(char const *s, char c)
 {
 	char	**new_arr;

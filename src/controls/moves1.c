@@ -17,12 +17,12 @@ void	rotate_right(t_game *game)
 	double	old_dirx;
 	double	old_planex;
 
-	old_dirx = game->p.dirX;
-	old_planex = game->p.planeX;
-	game->p.dirX = game->p.dirX * cos(RS) - game->p.dirY * sin(RS);
-	game->p.dirY = old_dirx * sin(RS) + game->p.dirY * cos(RS);
-	game->p.planeX = game->p.planeX * cos(RS) - game->p.planeY * sin(RS);
-	game->p.planeY = old_planex * sin(RS) + game->p.planeY * cos(RS);
+	old_dirx = game->p.dir_x;
+	old_planex = game->p.plane_x;
+	game->p.dir_x = game->p.dir_x * cos(RS) - game->p.dir_y * sin(RS);
+	game->p.dir_y = old_dirx * sin(RS) + game->p.dir_y * cos(RS);
+	game->p.plane_x = game->p.plane_x * cos(RS) - game->p.plane_y * sin(RS);
+	game->p.plane_y = old_planex * sin(RS) + game->p.plane_y * cos(RS);
 }
 
 void	rotate_left(t_game *game)
@@ -30,12 +30,12 @@ void	rotate_left(t_game *game)
 	double	old_dirx;
 	double	old_planex;
 
-	old_dirx = game->p.dirX;
-	old_planex = game->p.planeX;
-	game->p.dirX = game->p.dirX * cos(-RS) - game->p.dirY * sin(-RS);
-	game->p.dirY = old_dirx * sin(-RS) + game->p.dirY * cos(-RS);
-	game->p.planeX = game->p.planeX * cos(-RS) - game->p.planeY * sin(-RS);
-	game->p.planeY = old_planex * sin(-RS) + game->p.planeY * cos(-RS);
+	old_dirx = game->p.dir_x;
+	old_planex = game->p.plane_x;
+	game->p.dir_x = game->p.dir_x * cos(-RS) - game->p.dir_y * sin(-RS);
+	game->p.dir_y = old_dirx * sin(-RS) + game->p.dir_y * cos(-RS);
+	game->p.plane_x = game->p.plane_x * cos(-RS) - game->p.plane_y * sin(-RS);
+	game->p.plane_y = old_planex * sin(-RS) + game->p.plane_y * cos(-RS);
 }
 
 int	track_mouse_click(int button, int x, int y, t_game *game)

@@ -79,14 +79,14 @@ static void	calc_transform(t_game *game, t_sprite *sp, double *tf)
 	double	sprite_y;
 	double	inv_det;
 
-	sprite_x = sp->x - game->p.posX;
-	sprite_y = sp->y - game->p.posY;
-	inv_det = 1.0 / (game->p.planeX * game->p.dirY
-			- game->p.dirX * game->p.planeY);
-	tf[0] = inv_det * (game->p.dirY * sprite_x
-			- game->p.dirX * sprite_y);
-	tf[1] = inv_det * (-game->p.planeY * sprite_x
-			+ game->p.planeX * sprite_y);
+	sprite_x = sp->x - game->p.pos_x;
+	sprite_y = sp->y - game->p.pos_y;
+	inv_det = 1.0 / (game->p.plane_x * game->p.dir_y
+			- game->p.dir_x * game->p.plane_y);
+	tf[0] = inv_det * (game->p.dir_y * sprite_x
+			- game->p.dir_x * sprite_y);
+	tf[1] = inv_det * (-game->p.plane_y * sprite_x
+			+ game->p.plane_x * sprite_y);
 }
 
 void	render_sprite(t_game *game, t_sprite *sp)

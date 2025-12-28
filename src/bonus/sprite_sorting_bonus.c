@@ -19,8 +19,8 @@ static void	calc_sprite_distances(t_game *game)
 	i = 0;
 	while (i < game->sprite_count)
 	{
-		game->sprites[i].dist = pow(game->p.posX - game->sprites[i].x, 2)
-			+ pow(game->p.posY - game->sprites[i].y, 2);
+		game->sprites[i].dist = pow(game->p.pos_x - game->sprites[i].x, 2)
+			+ pow(game->p.pos_y - game->sprites[i].y, 2);
 		i++;
 	}
 }

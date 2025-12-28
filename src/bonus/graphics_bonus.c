@@ -37,6 +37,7 @@ static void	mlx_hooks_calls(t_game *game)
 {
 	mlx_loop_hook(game->mlx_ptr, render_frame, game);
 	mlx_hook(game->win_ptr, 2, 1L << 0, key_handler, game);
+	mlx_hook(game->win_ptr, 4, 1L << 2, track_mouse_click_bonus, game);
 	mlx_hook(game->win_ptr, 6, 1L << 6, mouse_rotate_bonus, game);
 	mlx_hook(game->win_ptr, 17, 0, handle_exit, game);
 }
@@ -81,6 +82,7 @@ void	init_game(t_game *game)
 			&game->img_buffer.bpp, &game->img_buffer.line_len,
 			&game->img_buffer.endian);
 	load_all_textures(game);
+	init_menu_buttons(game);
 	mlx_hooks_calls(game);
 	mlx_loop(game->mlx_ptr);
 }

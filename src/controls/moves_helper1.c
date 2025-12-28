@@ -69,8 +69,8 @@ void	toggle_door(t_game *game)
 	int	tx;
 	int	ty;
 
-	tx = (int)(game->p.posX + game->p.dirX * 1.04);
-	ty = (int)(game->p.posY + game->p.dirY * 1.04);
+	tx = (int)(game->p.pos_x + game->p.dir_x * 1.04);
+	ty = (int)(game->p.pos_y + game->p.dir_y * 1.04);
 	if (game->map[ty][tx] == 'D' || game->map[ty][tx] == 'O')
 		handle_door_state(game, tx, ty);
 }

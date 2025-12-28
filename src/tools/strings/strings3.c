@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strings3.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sayt <sayt@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 02:45:00 by sayt              #+#    #+#             */
+/*   Updated: 2025/12/28 02:45:00 by sayt             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	count_digits(int n)
@@ -39,42 +51,42 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-int ft_atoi(const char *str)
+static int	check_overflow(long result, int digit, int sign)
 {
-    long result = 0;
-    int  sign = 1;
-    int  i = 0;
-
-    while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-        i++;
-    if (str[i] == '-' || str[i] == '+')
-    {
-        if (str[i] == '-')
-            sign = -1;
-        i++;
-    }
-    while (str[i] >= '0' && str[i] <= '9')
-    {
-        int digit = str[i] - '0';
-        if (result > (LONG_MAX - digit) / 10)
-        {
-            if (sign == 1)
-                return (INT_MAX);
-            else
-                return (INT_MIN);
-        }
-        result = result * 10 + digit;
-        i++;
-    }
-    result *= sign;
-    if (result > INT_MAX)
-        return INT_MAX;
-    if (result < INT_MIN)
-        return INT_MIN;
-    return (int)result;
+	if (result > (LONG_MAX - digit) / 10)
+	{
+		if (sign == 1)
+			return (INT_MAX);
+		else
+			return (INT_MIN);
+	}
+	return (0);
 }
 
+int	ft_atoi(const char *str)
+{
+	long	result;
+	int		sign;
+	int		i;
+	int		limit;
 
+	result = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i++] == '-')
+			sign = -1;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		limit = check_overflow(result, str[i] - '0', sign);
+		if (limit)
+			return (limit);
+		result = result * 10 + (str[i++] - '0');
+	}
+	return ((int)(result * sign));
+}
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -87,30 +99,4 @@ char	*ft_strchr(const char *s, int c)
 	if ((char)c == '\0')
 		return ((char *)s);
 	return (NULL);
-}
-
-void free_split(char **arr)
-{
-    int i = 0;
-    if (!arr) return;
-    while (arr[i])
-    {
-        free(arr[i]);
-        i++;
-    }
-    free(arr);
-}
-char *ft_strtrim_newline(char *s)
-{
-    size_t len;
-    char *trimmed_s;
-
-    if (!s)
-        return NULL;
-    len = ft_strlen(s);
-    while (len > 0 && (s[len - 1] == '\n' ||
-        s[len - 1] == ' ' || s[len - 1] == '\r' || s[len - 1] == '\t'))
-        len--;
-    trimmed_s = gc_substr(s, 0, len);
-    return trimmed_s;
 }

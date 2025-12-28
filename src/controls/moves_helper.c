@@ -31,16 +31,16 @@ void	get_coll_buffer(t_game *game, double new_x, double new_y, char op)
 	double	bx;
 	double	by;
 
-	bx = new_x + get_axis_offset(game->p.dirX, op);
-	by = new_y + get_axis_offset(game->p.dirY, op);
-	if (game->map[(int)game->p.posY][(int)bx] != '1' &&
-		game->map[(int)game->p.posY][(int)bx] != 'D')
+	bx = new_x + get_axis_offset(game->p.dir_x, op);
+	by = new_y + get_axis_offset(game->p.dir_y, op);
+	if (game->map[(int)game->p.pos_y][(int)bx] != '1' &&
+		game->map[(int)game->p.pos_y][(int)bx] != 'D')
 	{
-		game->p.posX = new_x;
+		game->p.pos_x = new_x;
 	}
-	if (game->map[(int)by][(int)game->p.posX] != '1' &&
-		game->map[(int)by][(int)game->p.posX] != 'D')
+	if (game->map[(int)by][(int)game->p.pos_x] != '1' &&
+		game->map[(int)by][(int)game->p.pos_x] != 'D')
 	{
-		game->p.posY = new_y;
+		game->p.pos_y = new_y;
 	}
 }

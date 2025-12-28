@@ -21,47 +21,47 @@ static void	set_pos(t_p *p, char c)
 {
 	if (c == 'N')
 	{
-		p->dirX = 0;
-		p->dirY = -0.99;
+		p->dir_x = 0;
+		p->dir_y = -0.99;
 	}
 	else if (c == 'S')
 	{
-		p->dirX = 0;
-		p->dirY = 0.99;
+		p->dir_x = 0;
+		p->dir_y = 0.99;
 	}
 	else if (c == 'W')
 	{
-		p->dirX = -0.99;
-		p->dirY = 0;
+		p->dir_x = -0.99;
+		p->dir_y = 0;
 	}
 	else if (c == 'E')
 	{
-		p->dirX = 0.99;
-		p->dirY = 0;
+		p->dir_x = 0.99;
+		p->dir_y = 0;
 	}
 }
 
 static void	set_plane(t_p *p)
 {
-	if (p->dirY < -0.9)
+	if (p->dir_y < -0.9)
 	{
-		p->planeX = .66;
-		p->planeY = 0;
+		p->plane_x = .66;
+		p->plane_y = 0;
 	}
-	else if (p->dirY > 0.9)
+	else if (p->dir_y > 0.9)
 	{
-		p->planeX = -.66;
-		p->planeY = 0;
+		p->plane_x = -.66;
+		p->plane_y = 0;
 	}
-	else if (p->dirX < -0.9)
+	else if (p->dir_x < -0.9)
 	{
-		p->planeX = 0;
-		p->planeY = -.66;
+		p->plane_x = 0;
+		p->plane_y = -.66;
 	}
-	else if (p->dirX > 0.9)
+	else if (p->dir_x > 0.9)
 	{
-		p->planeX = 0;
-		p->planeY = .66;
+		p->plane_x = 0;
+		p->plane_y = .66;
 	}
 }
 
@@ -77,8 +77,8 @@ static void	process_map_cell(t_game *game, int r, int c, int *found)
 	if (!(*found) && is_p_cord_pos(game->map[r][c]))
 	{
 		memset(&tmp_p, 0, sizeof(t_p));
-		tmp_p.posX = (double)c + .5;
-		tmp_p.posY = (double)r + .5;
+		tmp_p.pos_x = (double)c + .5;
+		tmp_p.pos_y = (double)r + .5;
 		set_pos(&tmp_p, game->map[r][c]);
 		set_plane(&tmp_p);
 		game->map[r][c] = '0';

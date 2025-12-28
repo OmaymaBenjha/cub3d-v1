@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sayt <sayt@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 03:30:00 by sayt              #+#    #+#             */
+/*   Updated: 2025/12/28 03:30:00 by sayt             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static char	*get_line(char *reserve)
@@ -62,9 +74,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	reserve = helper_func(buffer, reserve, fd);
 	if (!reserve || *reserve == '\0')
-		return ( reserve = NULL, NULL);
+		return (reserve = NULL, NULL);
 	line = get_line(reserve);
 	reserve = update_reserve(reserve);
 	return (line);
 }
-

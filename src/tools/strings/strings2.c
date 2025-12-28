@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strings2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sayt <sayt@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 03:00:00 by sayt              #+#    #+#             */
+/*   Updated: 2025/12/28 03:00:00 by sayt             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 char	*ft_strdup(char *value)
@@ -59,7 +71,23 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	r[i] = '\0';
 	return (r);
 }
+
 int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
+}
+
+char	*ft_strtrim_newline(char *s)
+{
+	size_t	len;
+	char	*trimmed_s;
+
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	while (len > 0 && (s[len - 1] == '\n' || s[len - 1] == ' '
+			|| s[len - 1] == '\r' || s[len - 1] == '\t'))
+		len--;
+	trimmed_s = gc_substr(s, 0, len);
+	return (trimmed_s);
 }
