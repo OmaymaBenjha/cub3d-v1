@@ -1,31 +1,22 @@
 
 
    
-F    40     , 123 , 56
+F 40, 40, 40
 
-C    76, 187, 217
+C    10, 20, 30
 
 
 
 
 
    WE ./assets/textures/wall.xpm
-  EA   ./assets/textures/n.xpm
+  EA   ./assets/textures/wall.xpm
 
-NO ./assets/textures/wall1.xpm
-SO ./assets/textures/wall1.xpm
-
-
-
-1111111111111111111111111
-1000000000000000000000001
-1111111110110111111111111
-10000000000N0000000000001
-1000000000000000000000001
-1000000000000000000000001
-1111111111111111111111111
+NO ./assets/textures/wall.xpm
+SO ./assets/textures/wall.xpm
 
 
-
- 
+1111111111111111
+1000000N00000001
+1111111111111111
 

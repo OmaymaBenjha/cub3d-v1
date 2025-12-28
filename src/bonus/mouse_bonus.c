@@ -76,19 +76,12 @@ int	track_mouse_click_bonus(int button, int x, int y, t_game *game)
 
 void	init_menu_buttons(t_game *game)
 {
-	int	btn_w;
-	int	btn_h;
-
-	btn_w = game->menu.btn_start.width / 3;
-	btn_h = game->menu.btn_start.height / 3;
-	game->menu.start_rect.x = (WIDTH / 2) - (btn_w / 2);
-	game->menu.start_rect.y = (HEIGHT / 2) - btn_h;
-	game->menu.start_rect.width = btn_w;
-	game->menu.start_rect.height = btn_h;
-	btn_w = game->menu.btn_exit.width / 3;
-	btn_h = game->menu.btn_exit.height / 3;
-	game->menu.exit_rect.x = (WIDTH / 2) - (btn_w / 2);
-	game->menu.exit_rect.y = (HEIGHT / 2) + 20;
-	game->menu.exit_rect.width = btn_w;
-	game->menu.exit_rect.height = btn_h;
+	game->menu.start_rect.width = 500;
+	game->menu.start_rect.height = 220;
+	game->menu.exit_rect.width = 500;
+	game->menu.exit_rect.height = 220;
+	game->menu.start_rect.x = WIDTH / 2 - game->menu.start_rect.width - 40;
+	game->menu.start_rect.y = HEIGHT / 2;
+	game->menu.exit_rect.x = WIDTH / 2 + 40;
+	game->menu.exit_rect.y = HEIGHT / 2;
 }
