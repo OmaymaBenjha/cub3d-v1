@@ -60,14 +60,16 @@ SRCS_BONUS = main.c \
 		src/logic_parsing/map_config_fc_utils.c \
 		src/logic_parsing/map_config_tex.c \
 		src/logic_parsing/map_data_helper.c \
-		src/logic_parsing/p_cord.c \
+		src/bonus/p_cord_bonus.c \
 		src/logic_parsing/final_map.c \
 		src/tools/strings/strings1.c \
 		src/tools/strings/strings2.c \
 		src/tools/strings/strings3.c \
 		src/tools/get_next_line.c \
 		src/tools/garbage_collector/gc_mall.c \
-		src/tools/garbage_collector/gc_mall2.c
+		src/tools/garbage_collector/gc_mall2.c \
+		src/logic_parsing/sprite_parsing.c \
+		src/bonus/sprite_casting_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)

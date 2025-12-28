@@ -65,6 +65,20 @@ void	init_game(t_game *game)
 	load_texture(game, &game->menu.btn_exit, E_PATH);
 	load_texture(game, &game->menu.btn_start, S_PATH);
 	load_texture(game, &game->tex_door, DOOR_PATH);
+	int i = 0;
+	char *paths[TORCH_FRAMES] = {
+		"assets/textures/menu/torch_0.xpm",
+		"assets/textures/menu/torch_1.xpm",
+		"assets/textures/menu/torch_2.xpm",
+		"assets/textures/menu/torch_3.xpm",
+		"assets/textures/menu/torch_4.xpm",
+		"assets/textures/menu/torch_5.xpm"
+	};
+	while (i < TORCH_FRAMES)
+	{
+		load_texture(game, &game->menu.torch[i], paths[i]);
+		i++;
+	}
 	mlx_hooks_calls(game);
 	mlx_loop(game->mlx_ptr);
 }

@@ -15,7 +15,7 @@
 int	is_map_char(char c)
 {
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ' || c == 'D')
+		|| c == ' ' || c == 'D' || c == 'T')
 		return (1);
 	return (0);
 }

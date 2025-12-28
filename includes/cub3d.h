@@ -33,6 +33,8 @@
 #define S_PATH  "assets/textures/menu/s.xpm"
 #define E_PATH  "assets/textures/menu/ex.xpm"
 #define DOOR_PATH "assets/textures/door.xpm"
+#define TORCH_FRAMES 6
+
 
 typedef struct s_gc_node
 {
@@ -119,7 +121,19 @@ typedef struct s_menu
     t_img   btn_exit;
     t_rect  start_rect;
     t_rect  exit_rect;
+    t_img   torch[TORCH_FRAMES];
+    int     torch_frame;
+    int     torch_counter;
+    t_rect  torch_left_rect;
+    t_rect  torch_right_rect;
 } t_menu;
+
+typedef struct s_sprite
+{
+	double	x;
+	double	y;
+	double	dist;
+}	t_sprite;
 
 typedef struct s_door
 {
@@ -154,6 +168,9 @@ typedef struct s_game
     int         mouse_y;
 	t_door		*doors;
 	int			mouse_locked;
+	t_sprite	*sprites;
+	int			sprite_count;
+	double		z_buffer[WIDTH];
 } t_game;
 
 typedef struct s_wall
@@ -253,5 +270,7 @@ int track_mouse_click(int button, int x, int y, t_game *game);
 int    handle_exit(t_game *game);
 void toggle_door(t_game *game);
 void	get_coll_buffer(t_game *game, double new_x, double new_y, char op);
+void	add_sprite(t_game *game, int ix, int iy);
+void	cast_sprites(t_game *game);
 
 #endif

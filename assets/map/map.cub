@@ -1,7 +1,5 @@
 
 
-
-
    
 F    40     , 123 , 56
 
@@ -10,9 +8,14 @@ C    76, 187, 217
 
 
 
+<<<<<<< Updated upstream
 
    WE ./assets/textures/wall .xpm
   EA   ./assets/textures/n .xpm
+=======
+   WE ./assets/textures/wall.xpm
+  EA   ./assets/textures/wall.xpm
+>>>>>>> Stashed changes
 
 NO ./assets/textures/wall1.xpm
 SO ./assets/textures/wall1.xpm
@@ -21,13 +24,20 @@ SO ./assets/textures/wall1.xpm
 
 1111111111111111111111111
 1000000000000000000000001
+<<<<<<< Updated upstream
 1111111110110111111111111
+=======
+1111111110111111111111111
+>>>>>>> Stashed changes
 10000000000N0000000000001
 1000000000000000000000001
 1000000000000000000000001
 1111111111111111111111111
+<<<<<<< Updated upstream
 
 
 
  
 
+=======
+>>>>>>> Stashed changes

@@ -93,6 +93,8 @@ void	raycasting_engine(t_game *game)
 		ray_dir_and_steps(&ray, game);
 		detect_wall_hit(&ray, game);
 		drawing_engin(&ray, game, x);
+		game->z_buffer[x] = ray.perpWallDist;
 		x++;
 	}
+	cast_sprites(game);
 }

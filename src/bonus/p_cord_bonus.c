@@ -1,13 +1,8 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_cord.c                                           :+:      :+:    :+:   */
+/*   p_cord_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/27 21:54:13 by oben-jha          #+#    #+#             */
-/*   Updated: 2025/12/27 21:54:13 by oben-jha         ###   ########.fr       */
-/*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
@@ -80,6 +75,11 @@ void	get_p_cord(t_game *game)
 		c = 0;
 		while (c < ft_strlen(game->map[r]))
 		{
+			if (game->map[r][c] == 'T')
+			{
+				add_sprite(game, (int)c, (int)r);
+				game->map[r][c] = '0';
+			}
 			if (!found && is_p_cord_pos(game->map[r][c]))
 			{
 				tmp_p.posX = (double)c + .5;
