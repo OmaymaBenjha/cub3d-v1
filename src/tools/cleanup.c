@@ -42,6 +42,10 @@ static void	destroy_menu(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->menu.btn_exit.img_ptr);
 	if (game->menu.btn_start.img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->menu.btn_start.img_ptr);
+	if (game->menu.btn_start_hover.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->menu.btn_start_hover.img_ptr);
+	if (game->menu.btn_exit_hover.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->menu.btn_exit_hover.img_ptr);
 }
 
 int	handle_exit(t_game *game)

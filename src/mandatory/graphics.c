@@ -64,6 +64,8 @@ void	init_game(t_game *game)
 	load_texture(game, &game->menu.bg, BG_PATH);
 	load_texture(game, &game->menu.btn_exit, E_PATH);
 	load_texture(game, &game->menu.btn_start, S_PATH);
+	load_texture(game, &game->menu.btn_start_hover, S_HOVER_PATH);
+	load_texture(game, &game->menu.btn_exit_hover, E_HOVER_PATH);
 	mlx_hooks_calls(game);
 	mlx_loop(game->mlx_ptr);
 }

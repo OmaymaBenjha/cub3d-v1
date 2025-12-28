@@ -42,9 +42,11 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define COL_BUF 0.2
-# define BG_PATH "assets/textures/menu/bg.xpm"
-# define S_PATH  "assets/textures/menu/s.xpm"
-# define E_PATH  "assets/textures/menu/ex.xpm"
+# define BG_PATH "assets/textures/bg.xpm"
+# define S_PATH  "assets/textures/start.xpm"
+# define S_HOVER_PATH "assets/textures/start_hover.xpm"
+# define E_PATH  "assets/textures/exit.xpm"
+# define E_HOVER_PATH "assets/textures/exit_hover.xpm"
 # define DOOR_PATH "assets/textures/door.xpm"
 # define TORCH_FRAMES 6
 
@@ -131,7 +133,9 @@ typedef struct s_menu
 {
 	t_img	bg;
 	t_img	btn_start;
+	t_img	btn_start_hover;
 	t_img	btn_exit;
+	t_img	btn_exit_hover;
 	t_rect	start_rect;
 	t_rect	exit_rect;
 	t_img	torch[TORCH_FRAMES];

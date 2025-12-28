@@ -51,6 +51,8 @@ static void	load_all_textures(t_game *game)
 	load_texture(game, &game->menu.bg, BG_PATH);
 	load_texture(game, &game->menu.btn_exit, E_PATH);
 	load_texture(game, &game->menu.btn_start, S_PATH);
+	load_texture(game, &game->menu.btn_start_hover, S_HOVER_PATH);
+	load_texture(game, &game->menu.btn_exit_hover, E_HOVER_PATH);
 	load_texture(game, &game->tex_door, DOOR_PATH);
 	load_texture(game, &game->menu.torch[0],
 		"assets/textures/menu/torch_0.xpm");

@@ -91,26 +91,18 @@ void	render_welcome_page(t_game *game)
 {
 	t_rect	draw_start;
 	t_rect	draw_exit;
-	int		pop;
+	t_img	*img_start;
+	t_img	*img_exit;
 
 	draw_background(game);
 	draw_start = game->menu.start_rect;
 	draw_exit = game->menu.exit_rect;
-	pop = 10;
+	img_start = &game->menu.btn_start;
+	img_exit = &game->menu.btn_exit;
 	if (check_mouse_event_bound(game, game->menu.start_rect))
-	{
-		draw_start.x -= pop;
-		draw_start.y -= pop;
-		draw_start.width += (pop * 3);
-		draw_start.height += (pop * 3);
-	}
+		img_start = &game->menu.btn_start_hover;
 	if (check_mouse_event_bound(game, game->menu.exit_rect))
-	{
-		draw_exit.x -= pop;
-		draw_exit.y -= pop;
-		draw_exit.width += (pop * 3);
-		draw_exit.height += (pop * 3);
-	}
-	draw_btn(game, &game->menu.btn_start, &draw_start);
-	draw_btn(game, &game->menu.btn_exit, &draw_exit);
+		img_exit = &game->menu.btn_exit_hover;
+	draw_btn(game, img_start, &draw_start);
+	draw_btn(game, img_exit, &draw_exit);
 }
