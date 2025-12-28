@@ -44,3 +44,22 @@ void	get_coll_buffer(t_game *game, double new_x, double new_y, char op)
 		game->p.pos_y = new_y;
 	}
 }
+
+void	get_coll_buffer_side(t_game *game, double new_x, double new_y, char op)
+{
+	double	bx;
+	double	by;
+
+	bx = new_x + get_axis_offset(game->p.plane_x, op);
+	by = new_y + get_axis_offset(game->p.plane_y, op);
+	if (game->map[(int)game->p.pos_y][(int)bx] != '1' &&
+		game->map[(int)game->p.pos_y][(int)bx] != 'D')
+	{
+		game->p.pos_x = new_x;
+	}
+	if (game->map[(int)by][(int)game->p.pos_x] != '1' &&
+		game->map[(int)by][(int)game->p.pos_x] != 'D')
+	{
+		game->p.pos_y = new_y;
+	}
+}

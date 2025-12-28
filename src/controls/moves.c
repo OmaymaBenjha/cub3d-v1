@@ -40,7 +40,7 @@ void	move_left(t_game *game)
 
 	new_x = game->p.pos_x - game->p.plane_x * MOVESPEED;
 	new_y = game->p.pos_y - game->p.plane_y * MOVESPEED;
-	get_coll_buffer(game, new_x, new_y, '-');
+	get_coll_buffer_side(game, new_x, new_y, '-');
 }
 
 void	move_right(t_game *game)
@@ -50,5 +50,5 @@ void	move_right(t_game *game)
 
 	new_x = game->p.pos_x + game->p.plane_x * MOVESPEED;
 	new_y = game->p.pos_y + game->p.plane_y * MOVESPEED;
-	get_coll_buffer(game, new_x, new_y, '+');
+	get_coll_buffer_side(game, new_x, new_y, '+');
 }

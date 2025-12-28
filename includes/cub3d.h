@@ -283,6 +283,8 @@ int				handle_exit(t_game *game);
 void			toggle_door(t_game *game);
 void			get_coll_buffer(t_game *game, double new_x, double new_y,
 					char op);
+void			get_coll_buffer_side(t_game *game, double new_x, double new_y,
+					char op);
 void			add_sprite(t_game *game, int ix, int iy);
 void			cast_sprites(t_game *game);
 
