@@ -13,10 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
+#include "macros.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -25,30 +22,6 @@
 # include <string.h>
 # include <math.h>
 # include "mlx.h"
-
-# define KEY_ESC 65307
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
-# define KEY_SPACE 32
-# define KEY_ALT 65513
-
-# define MOVESPEED 0.1
-# define RS 0.1
-
-# define WIDTH 1920
-# define HEIGHT 1080
-# define COL_BUF 0.2
-# define BG_PATH "assets/textures/bg.xpm"
-# define S_PATH  "assets/textures/start.xpm"
-# define S_HOVER_PATH "assets/textures/start_hover.xpm"
-# define E_PATH  "assets/textures/exit.xpm"
-# define E_HOVER_PATH "assets/textures/exit_hover.xpm"
-# define DOOR_PATH "assets/textures/door.xpm"
-# define NUM_FRAMES 7
 
 typedef struct s_gc_node
 {

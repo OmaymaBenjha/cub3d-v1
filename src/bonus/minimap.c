@@ -25,15 +25,15 @@ static void    draw_mp(t_game *g)
             mx = (int)g->p.pos_x + ((x - MINI_W / 2.0) / MINI_TILE);
             my = (int)g->p.pos_y + ((y - MINI_H / 2.0) / MINI_TILE);
             if (mx < 0 || my < 0|| my >= (int)g->map_height|| mx >= (int)g->map_width)
-				put_pixel(&g->img_buffer, x, y, COLOR_VOID);
+				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_VOID);
 			else if (g->map[my][mx] == '1')
-				put_pixel(&g->img_buffer, x, y, COLOR_WALL);
+				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_WALL);
 			else if (g->map[my][mx] == 'D' || g->map[my][mx] == 'O')
-				put_pixel(&g->img_buffer, x, y, COLOR_DOOR);
+				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_DOOR);
 			else if (g->map[my][mx] == '0')
-				put_pixel(&g->img_buffer, x, y, COLOR_FLOOR);
+				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_FLOOR);
 			else
-				put_pixel(&g->img_buffer, x, y, COLOR_VOID);
+				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_VOID);
         }  
     }
 }
@@ -44,8 +44,8 @@ static void	draw_p(t_game *g)
 	int	i;
 	int	j;
 
-	cx = (MINI_W / 2) + 5;
-	cy = (MINI_H / 2) + 5;
+	cx = (MINI_W / 2) + 35;
+	cy = (MINI_H / 2) + 35;
 	i = -3;
 	while (i <= 3)
 	{
@@ -68,8 +68,8 @@ static void	draw_pd(t_game *g)
 	i = 0;
 	while (i < 15)
 	{
-		x = (MINI_W / 2) + 5 + g->p.dir_x * i;
-		y = (MINI_H / 2) + 5 + g->p.dir_y * i;
+		x = (MINI_W / 2) + 35 + g->p.dir_x * i;
+		y = (MINI_H / 2) + 35 + g->p.dir_y * i;
 		put_pixel(&g->img_buffer, (int)x, (int)y, COLOR_DIR);
 		i++;
 	}

@@ -54,20 +54,13 @@ static void	load_all_textures(t_game *game)
 	load_texture(game, &game->menu.btn_start_hover, S_HOVER_PATH);
 	load_texture(game, &game->menu.btn_exit_hover, E_HOVER_PATH);
 	load_texture(game, &game->tex_door, DOOR_PATH);
-	load_texture(game, &game->menu.frames[0],
-		"assets/textures/menu/frame_1.xpm");
-	load_texture(game, &game->menu.frames[1],
-		"assets/textures/menu/frame_2.xpm");
-	load_texture(game, &game->menu.frames[2],
-		"assets/textures/menu/frame_3.xpm");
-	load_texture(game, &game->menu.frames[3],
-		"assets/textures/menu/frame_4.xpm");
-	load_texture(game, &game->menu.frames[4],
-		"assets/textures/menu/frame_5.xpm");
-	load_texture(game, &game->menu.frames[5],
-		"assets/textures/menu/frame_6.xpm");
-	load_texture(game, &game->menu.frames[6],
-		"assets/textures/menu/frame_7.xpm");
+	load_texture(game, &game->menu.frames[0], F1);
+	load_texture(game, &game->menu.frames[1], F2);
+	load_texture(game, &game->menu.frames[2], F3);
+	load_texture(game, &game->menu.frames[3], F4);
+	load_texture(game, &game->menu.frames[4], F5);
+	load_texture(game, &game->menu.frames[5], F6);
+	load_texture(game, &game->menu.frames[6], F7);
 }
 
 void	init_game(t_game *game)
