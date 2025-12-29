@@ -44,8 +44,8 @@ static void	draw_p(t_game *g)
 	int	i;
 	int	j;
 
-	cx = (MINI_W / 2) + 5;
-	cy = (MINI_H / 2) + 5;
+	cx = (MINI_W / 2);
+	cy = (MINI_H / 2);
 	i = -3;
 	while (i <= 3)
 	{
@@ -68,13 +68,12 @@ static void	draw_pd(t_game *g)
 	i = 0;
 	while (i < 15)
 	{
-		x = (MINI_W / 2) + 5 + g->p.dir_x * i;
-		y = (MINI_H / 2) + 5 + g->p.dir_y * i;
+		x = (MINI_W / 2) + g->p.dir_x * i;
+		y = (MINI_H / 2) + g->p.dir_y * i;
 		put_pixel(&g->img_buffer, (int)x, (int)y, COLOR_DIR);
 		i++;
 	}
 }
-
 
 void    render_minimap(t_game *g)
 {
