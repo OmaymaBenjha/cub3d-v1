@@ -48,15 +48,7 @@ static void	draw_btn(t_game *game, t_img *img, t_rect *rect)
 	draw_btn_loop(game, img, rect, sc);
 }
 
-int	check_mouse_event_bound(t_game *game, t_rect rect)
-{
-	if (game->mouse_x >= rect.x
-		&& game->mouse_x <= (rect.x + rect.width)
-		&& game->mouse_y >= rect.y
-		&& game->mouse_y <= (rect.y + rect.height))
-		return (1);
-	return (0);
-}
+
 
 static void	draw_background(t_game *game)
 {

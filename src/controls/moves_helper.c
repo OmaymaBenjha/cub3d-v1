@@ -63,3 +63,13 @@ void	get_coll_buffer_side(t_game *game, double new_x, double new_y, char op)
 		game->p.pos_y = new_y;
 	}
 }
+
+int	check_mouse_event_bound(t_game *game, t_rect rect)
+{
+	if (game->mouse_x >= rect.x
+		&& game->mouse_x <= (rect.x + rect.width)
+		&& game->mouse_y >= rect.y
+		&& game->mouse_y <= (rect.y + rect.height))
+		return (1);
+	return (0);
+}

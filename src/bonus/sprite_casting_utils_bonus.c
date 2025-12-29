@@ -12,25 +12,23 @@
 
 #include "cub3d_bonus.h"
 
-static void	calc_sprite_dims(double transform_y, int screen_x,
-	int *draw, int *dims)
+static void	calc_sprite_dims(int screen_x, int *params)
 {
-	draw[0] = -dims[1] / 2 + HEIGHT / 2;
-	if (draw[0] < 0)
-		draw[0] = 0;
-	draw[1] = dims[1] / 2 + HEIGHT / 2;
-	if (draw[1] >= HEIGHT)
-		draw[1] = HEIGHT - 1;
-	draw[2] = -dims[0] / 2 + screen_x;
-	if (draw[2] < 0)
-		draw[2] = 0;
-	draw[3] = dims[0] / 2 + screen_x;
-	if (draw[3] >= WIDTH)
-		draw[3] = WIDTH - 1;
-	(void)transform_y;
+	params[0] = -params[5] / 2 + HEIGHT / 2;
+	if (params[0] < 0)
+		params[0] = 0;
+	params[1] = params[5] / 2 + HEIGHT / 2;
+	if (params[1] >= HEIGHT)
+		params[1] = HEIGHT - 1;
+	params[2] = -params[4] / 2 + screen_x;
+	if (params[2] < 0)
+		params[2] = 0;
+	params[3] = params[4] / 2 + screen_x;
+	if (params[3] >= WIDTH)
+		params[3] = WIDTH - 1;
 }
 
-static void	draw_column(t_game *game, int stripe, int *draw, int *dims, int tex_x)
+static void	draw_column(t_game *game, int stripe, int *params, int tex_x)
 {
 	int				y;
 	int				tex_y;
@@ -39,11 +37,11 @@ static void	draw_column(t_game *game, int stripe, int *draw, int *dims, int tex_
 	int				d;
 
 	tex = &game->menu.frames[game->menu.frame_index];
-	y = draw[0];
-	while (y < draw[1])
+	y = params[0];
+	while (y < params[1])
 	{
-		d = (y) * 256 - HEIGHT * 128 + dims[1] * 128; // 256 and 128 factors to avoid floats
-		tex_y = ((d * tex->height) / dims[1]) / 256;
+		d = y * 256 - HEIGHT * 128 + params[5] * 128;
+		tex_y = ((d * tex->height) / params[5]) / 256;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= tex->height)
@@ -55,21 +53,18 @@ static void	draw_column(t_game *game, int stripe, int *draw, int *dims, int tex_
 	}
 }
 
-static void	draw_sprite_stripe(t_game *game, int stripe, int *draw,
-	int *dims, int screen_x)
+static void	draw_sprite_stripe(t_game *game, int stripe, int *params, int sx)
 {
 	int		tex_x;
 	t_img	*tex;
 
 	tex = &game->menu.frames[game->menu.frame_index];
-	// Formula: (current_x - start_x) * tex_width / total_width
-	// start_x is (screen_x - dims[0] / 2)
-	tex_x = (int)(256 * (stripe - (-dims[0] / 2 + screen_x)) * tex->width / dims[0]) / 256;
+	tex_x = (256 * (stripe - (-params[4] / 2 + sx)) * tex->width / params[4]) / 256;
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= tex->width)
 		tex_x = tex->width - 1;
-	draw_column(game, stripe, draw, dims, tex_x);
+	draw_column(game, stripe, params, tex_x);
 }
 
 static void	calc_transform(t_game *game, t_sprite *sp, double *tf)
@@ -92,8 +87,7 @@ void	render_sprite(t_game *game, t_sprite *sp)
 {
 	double	tf[2];
 	int		screen_x;
-	int		dims[2];
-	int		draw[4];
+	int		params[6];
 	int		stripe;
 	t_img	*tex;
 
@@ -102,15 +96,16 @@ void	render_sprite(t_game *game, t_sprite *sp)
 		return ;
 	tex = &game->menu.frames[game->menu.frame_index];
 	screen_x = (int)((WIDTH / 2) * (1 + tf[0] / tf[1]));
-	dims[1] = abs((int)(HEIGHT / tf[1] * 0.8));
-	dims[0] = abs((int)(dims[1] * ((double)tex->width / tex->height)));
-	calc_sprite_dims(tf[1], screen_x, draw, dims);
-	stripe = draw[2];
-	while (stripe < draw[3])
+	params[5] = abs((int)(HEIGHT / tf[1] * 0.8));
+	params[4] = abs((int)(params[5] * ((double)tex->width / tex->height)));
+	calc_sprite_dims(screen_x, params);
+	stripe = params[2];
+	while (stripe < params[3])
 	{
 		if (stripe >= 0 && stripe < WIDTH
 			&& tf[1] < game->z_buffer[stripe])
-			draw_sprite_stripe(game, stripe, draw, dims, screen_x);
+			draw_sprite_stripe(game, stripe, params, screen_x);
 		stripe++;
 	}
 }
+
