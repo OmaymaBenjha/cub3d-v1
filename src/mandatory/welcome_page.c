@@ -48,8 +48,6 @@ static void	draw_btn(t_game *game, t_img *img, t_rect *rect)
 	draw_btn_loop(game, img, rect, sc);
 }
 
-
-
 static void	draw_background(t_game *game)
 {
 	int		x;
