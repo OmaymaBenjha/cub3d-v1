@@ -21,8 +21,6 @@ static int	is_valid_file(char *fname)
 		return (0);
 	if (ft_strcmp(fname + len - 4, ".cub") != 0)
 		return (0);
-	if (ft_strchr(fname, ' '))
-		return (0);
 	return (1);
 }
 
