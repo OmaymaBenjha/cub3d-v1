@@ -50,6 +50,7 @@
 # define DOOR_PATH "assets/textures/door.xpm"
 # define NUM_FRAMES 7
 
+
 typedef struct s_gc_node
 {
 	void				*pt;

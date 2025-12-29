@@ -17,7 +17,7 @@ static int	render_frame(t_game *game)
 	if (game->game_state == 0)
 		render_welcome_page(game);
 	else
-		raycasting_engine(game);
+		(raycasting_engine(game), render_minimap(game));
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 		game->img_buffer.img_ptr, 0, 0);
 	return (0);
@@ -94,6 +94,8 @@ void	init_game(t_game *game)
 	game->img_buffer.img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
 	if (!game->img_buffer.img_ptr)
 		(printf("Image couldn't be created!\n"), exit(1));
+	game->img_buffer.width = WIDTH;
+	game->img_buffer.height = HEIGHT;
 	game->img_buffer.addr = mlx_get_data_addr(game->img_buffer.img_ptr,
 			&game->img_buffer.bpp, &game->img_buffer.line_len,
 			&game->img_buffer.endian);

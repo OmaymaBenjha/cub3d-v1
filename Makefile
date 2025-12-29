@@ -1,7 +1,7 @@
 NAME = cub3d
 NAME_BONUS = cub3d_bonus
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror  -fsanitize=address
 RM = rm -f
 
 MLX_PATH = ./minilibx-linux
@@ -47,6 +47,7 @@ SRCS_BONUS = main.c \
 		src/bonus/map_data_bonus.c \
 		src/bonus/drawing_bonus.c \
 		src/bonus/raycasting_bonus.c \
+		src/bonus/minimap.c \
 		src/controls/inputs.c \
 		src/controls/moves.c \
 		src/controls/moves1.c \
