@@ -22,7 +22,7 @@ SRCS =	main.c \
 		src/controls/moves1.c \
 		src/controls/moves_helper.c \
 		src/controls/moves_helper1.c \
-		src/welcome_page.c \
+		src/mandatory/welcome_page.c \
 		src/tools/cleanup.c \
 		src/logic_parsing/check_args.c \
 		src/logic_parsing/fetch_map.c \
@@ -52,7 +52,7 @@ SRCS_BONUS = main.c \
 		src/controls/moves1.c \
 		src/controls/moves_helper.c \
 		src/controls/moves_helper1.c \
-		src/welcome_page.c \
+		src/bonus/welcome_page_bonus.c \
 		src/tools/cleanup.c \
 		src/logic_parsing/check_args.c \
 		src/logic_parsing/fetch_map.c \

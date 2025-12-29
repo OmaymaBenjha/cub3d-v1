@@ -87,6 +87,8 @@ static void	draw_background(t_game *game)
 	}
 }
 
+
+
 void	render_welcome_page(t_game *game)
 {
 	t_rect	draw_start;

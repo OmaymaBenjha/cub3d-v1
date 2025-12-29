@@ -54,18 +54,32 @@ static void	load_all_textures(t_game *game)
 	load_texture(game, &game->menu.btn_start_hover, S_HOVER_PATH);
 	load_texture(game, &game->menu.btn_exit_hover, E_HOVER_PATH);
 	load_texture(game, &game->tex_door, DOOR_PATH);
-	load_texture(game, &game->menu.torch[0],
-		"assets/textures/menu/torch_0.xpm");
-	load_texture(game, &game->menu.torch[1],
-		"assets/textures/menu/torch_1.xpm");
-	load_texture(game, &game->menu.torch[2],
-		"assets/textures/menu/torch_2.xpm");
-	load_texture(game, &game->menu.torch[3],
-		"assets/textures/menu/torch_3.xpm");
-	load_texture(game, &game->menu.torch[4],
-		"assets/textures/menu/torch_4.xpm");
-	load_texture(game, &game->menu.torch[5],
-		"assets/textures/menu/torch_5.xpm");
+	load_texture(game, &game->menu.frames[0],
+		"assets/textures/menu/frame_1.xpm");
+	load_texture(game, &game->menu.frames[1],
+		"assets/textures/menu/frame_2.xpm");
+	load_texture(game, &game->menu.frames[2],
+		"assets/textures/menu/frame_3.xpm");
+	load_texture(game, &game->menu.frames[3],
+		"assets/textures/menu/frame_4.xpm");
+	load_texture(game, &game->menu.frames[4],
+		"assets/textures/menu/frame_5.xpm");
+	load_texture(game, &game->menu.frames[5],
+		"assets/textures/menu/frame_6.xpm");
+	load_texture(game, &game->menu.frames[6],
+		"assets/textures/menu/frame_7.xpm");
+	{
+		int		i;
+		char	path[] = "assets/textures/menu/frame_1.xpm";
+
+		i = 0;
+		while (i < NUM_FRAMES)
+		{
+			path[27] = (i + 1) + '0';
+			load_texture(game, &game->menu.frames[i], path);
+			i++;
+		}
+	}
 }
 
 void	init_game(t_game *game)

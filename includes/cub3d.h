@@ -48,7 +48,7 @@
 # define E_PATH  "assets/textures/exit.xpm"
 # define E_HOVER_PATH "assets/textures/exit_hover.xpm"
 # define DOOR_PATH "assets/textures/door.xpm"
-# define TORCH_FRAMES 6
+# define NUM_FRAMES 7
 
 typedef struct s_gc_node
 {
@@ -138,11 +138,11 @@ typedef struct s_menu
 	t_img	btn_exit_hover;
 	t_rect	start_rect;
 	t_rect	exit_rect;
-	t_img	torch[TORCH_FRAMES];
-	int		torch_frame;
-	int		torch_counter;
-	t_rect	torch_left_rect;
-	t_rect	torch_right_rect;
+	t_img	frames[NUM_FRAMES];
+	int		frame_index;
+	int		frame_counter;
+	t_rect	anim_left_rect;
+	t_rect	anim_right_rect;
 }	t_menu;
 
 typedef struct s_sprite

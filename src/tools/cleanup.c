@@ -29,9 +29,9 @@ static void	destroy_textures(t_game *game)
 	if (game->tex_door.img_ptr)
 		mlx_destroy_image(game->mlx_ptr, game->tex_door.img_ptr);
 	i = -1;
-	while (++i < TORCH_FRAMES)
-		if (game->menu.torch[i].img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->menu.torch[i].img_ptr);
+	while (++i < NUM_FRAMES)
+		if (game->menu.frames[i].img_ptr)
+			mlx_destroy_image(game->mlx_ptr, game->menu.frames[i].img_ptr);
 }
 
 static void	destroy_menu(t_game *game)

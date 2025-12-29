@@ -18,12 +18,12 @@ void	cast_sprites(t_game *game)
 
 	if (game->sprite_count == 0)
 		return ;
-	game->menu.torch_counter++;
-	if (game->menu.torch_counter >= 10)
+	game->menu.frame_counter++;
+	if (game->menu.frame_counter >= 10)
 	{
-		game->menu.torch_counter = 0;
-		game->menu.torch_frame = (game->menu.torch_frame + 1)
-			% TORCH_FRAMES;
+		game->menu.frame_counter = 0;
+		game->menu.frame_index = (game->menu.frame_index + 1)
+			% NUM_FRAMES;
 	}
 	sort_sprites(game);
 	i = 0;

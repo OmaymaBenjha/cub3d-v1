@@ -22,16 +22,16 @@ static void	init_menu_vars(t_game *game)
 	game->menu.start_rect.y = HEIGHT / 2;
 	game->menu.exit_rect.x = WIDTH / 2 + 40;
 	game->menu.exit_rect.y = HEIGHT / 2;
-	game->menu.torch_frame = 0;
-	game->menu.torch_counter = 0;
-	game->menu.torch_left_rect.width = 140;
-	game->menu.torch_left_rect.height = 296;
-	game->menu.torch_left_rect.x = 200;
-	game->menu.torch_left_rect.y = HEIGHT / 2 + 100;
-	game->menu.torch_right_rect.width = 140;
-	game->menu.torch_right_rect.height = 296;
-	game->menu.torch_right_rect.x = WIDTH - 340;
-	game->menu.torch_right_rect.y = HEIGHT / 2 + 100;
+	game->menu.frame_index = 0;
+	game->menu.frame_counter = 0;
+	game->menu.anim_left_rect.width = 150 - 150 * 0.3;
+	game->menu.anim_left_rect.height = 658 - 658 * 0.3;
+	game->menu.anim_left_rect.x = WIDTH / 4;
+	game->menu.anim_left_rect.y = HEIGHT / 10;
+	game->menu.anim_right_rect.width = 150 - 150 * 0.3;
+	game->menu.anim_right_rect.height = 658 - 658 * 0.3;
+	game->menu.anim_right_rect.x = WIDTH - WIDTH / 4 - 70;
+	game->menu.anim_right_rect.y = HEIGHT / 10;
 }
 
 void	initiate_game_struct(t_game *game)

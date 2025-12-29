@@ -14,18 +14,18 @@
 
 static void	snap_to_wall(t_game *game, t_sprite *sp, int ix, int iy)
 {
-	sp->x = (double)ix + 0.5;
-	sp->y = (double)iy + 0.5;
+	sp->x = (double)ix + 0.9;
+	sp->y = (double)iy + 0.9;
 	if (iy > 0 && game->map[iy - 1][ix] == '1')
-		sp->y = (double)iy + 0.15;
+		sp->y = (double)iy + 0.01;
 	else if ((size_t)(iy + 1) < game->map_height
 		&& game->map[iy + 1][ix] == '1')
-		sp->y = (double)iy + 0.85;
+		sp->y = (double)iy + 0.99;
 	else if ((size_t)(ix + 1) < game->map_width
 		&& game->map[iy][ix + 1] == '1')
-		sp->x = (double)ix + 0.85;
+		sp->x = (double)ix + 0.99;
 	else if (ix > 0 && game->map[iy][ix - 1] == '1')
-		sp->x = (double)ix + 0.15;
+		sp->x = (double)ix + 0.01;
 }
 
 void	add_sprite(t_game *game, int ix, int iy)
