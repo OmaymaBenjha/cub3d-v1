@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   welcome_page.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayt <sayt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aziane <aziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/28 03:00:00 by sayt              #+#    #+#             */
-/*   Updated: 2025/12/28 03:00:00 by sayt             ###   ########.fr       */
+/*   Created: 2025/12/28 03:00:00 by aziane            #+#    #+#             */
+/*   Updated: 2025/12/28 03:00:00 by aziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ static void	draw_background(t_game *game)
 		x++;
 	}
 }
-
-
 
 void	render_welcome_page(t_game *game)
 {

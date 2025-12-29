@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_casting_utils_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayt <sayt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aziane <aziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/28 02:00:00 by sayt              #+#    #+#             */
-/*   Updated: 2025/12/28 02:00:00 by sayt             ###   ########.fr       */
+/*   Created: 2025/12/28 02:00:00 by aziane            #+#    #+#             */
+/*   Updated: 2025/12/28 02:00:00 by aziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void	draw_sprite_stripe(t_game *game, int stripe, int *params, int sx)
 	t_img	*tex;
 
 	tex = &game->menu.frames[game->menu.frame_index];
-	tex_x = (256 * (stripe - (-params[4] / 2 + sx)) * tex->width / params[4]) / 256;
+	tex_x = (256 * (stripe - (-params[4] / 2 + sx))
+			* tex->width / params[4]) / 256;
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= tex->width)
@@ -108,4 +109,3 @@ void	render_sprite(t_game *game, t_sprite *sp)
 		stripe++;
 	}
 }
-

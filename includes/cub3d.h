@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sayt <sayt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aziane <aziane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/28 03:00:00 by sayt              #+#    #+#             */
-/*   Updated: 2025/12/28 03:00:00 by sayt             ###   ########.fr       */
+/*   Created: 2025/12/28 03:00:00 by aziane            #+#    #+#             */
+/*   Updated: 2025/12/28 03:00:00 by aziane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@
 # define E_HOVER_PATH "assets/textures/exit_hover.xpm"
 # define DOOR_PATH "assets/textures/door.xpm"
 # define NUM_FRAMES 7
-
 
 typedef struct s_gc_node
 {

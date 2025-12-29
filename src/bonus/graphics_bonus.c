@@ -68,18 +68,6 @@ static void	load_all_textures(t_game *game)
 		"assets/textures/menu/frame_6.xpm");
 	load_texture(game, &game->menu.frames[6],
 		"assets/textures/menu/frame_7.xpm");
-	{
-		int		i;
-		char	path[] = "assets/textures/menu/frame_1.xpm";
-
-		i = 0;
-		while (i < NUM_FRAMES)
-		{
-			path[27] = (i + 1) + '0';
-			load_texture(game, &game->menu.frames[i], path);
-			i++;
-		}
-	}
 }
 
 void	init_game(t_game *game)
