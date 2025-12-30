@@ -45,7 +45,6 @@ static int	validate_texture_file(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		printf("the path is %s\n", path);
 		perror("Error\nCannot open texture path");
 		return (0);
 	}

@@ -102,7 +102,7 @@ int	main_trigger(char *map, t_game *game)
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("openfff");
+		perror("ERROR\nopen");
 		exit(EXIT_FAILURE);
 	}
 	if (!read_map_loop(fd, game))
