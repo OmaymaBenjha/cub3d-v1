@@ -17,9 +17,5 @@ void	handle_extra_inputs(int keycode, t_game *game)
 	if (keycode == KEY_ALT)
 	{
 		game->mouse_locked = !game->mouse_locked;
-		if (game->mouse_locked)
-			mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
-		else
-			mlx_mouse_show(game->mlx_ptr, game->win_ptr);
 	}
 }

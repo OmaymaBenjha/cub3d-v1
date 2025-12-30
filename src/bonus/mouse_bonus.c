@@ -60,7 +60,6 @@ int	track_mouse_click_bonus(int button, int x, int y, t_game *game)
 			if (game->game_state == 0)
 			{
 				game->game_state = 1;
-				mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
 				mlx_mouse_move(game->mlx_ptr, game->win_ptr,
 					WIDTH / 2, HEIGHT / 2);
 			}
