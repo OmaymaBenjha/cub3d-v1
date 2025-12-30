@@ -1,15 +1,12 @@
 NAME = cub3d
 NAME_BONUS = cub3d_bonus
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -f
+CFLAGS = -Wall -Wextra -Werror -Iincludes -I./minilibx-linux
+RM = rm -rf
 
 MLX_PATH = ./minilibx-linux
 MLX_NAME = mlx
 MLX_LIB  = $(MLX_PATH)/libmlx.a
-
-INCLUDES = -Iincludes -I$(MLX_PATH)
-
 MLX_FLAGS = -L$(MLX_PATH) -l$(MLX_NAME) -lXext -lX11 -lm -lz
 
 SRCS =	main.c \
@@ -78,30 +75,35 @@ SRCS_BONUS = main.c \
 		src/bonus/sprite_sorting_bonus.c \
 		src/bonus/sprite_casting_utils_bonus.c
 
-OBJS = $(SRCS:.c=.o)
-OBJS_BONUS = $(SRCS_BONUS:.c=_bonus.o)
+OBJ_DIR = obj
+OBJ_DIR_BONUS = obj_bonus
+
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJS_BONUS = $(addprefix $(OBJ_DIR_BONUS)/, $(SRCS_BONUS:.c=.o))
 
 all: $(MLX_LIB) $(NAME)
 
-$(MLX_LIB):
-	@make -C $(MLX_PATH)
-
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME) 
+	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME)
 
 bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): $(MLX_LIB) $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(MLX_FLAGS) -o $(NAME_BONUS)
 
-%.o: %.c includes/cub3d.h includes/cub3d_bonus.h includes/macros.h
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(MLX_LIB):
+	@make -C $(MLX_PATH)
 
-%_bonus.o: %.c includes/cub3d.h includes/cub3d_bonus.h includes/macros.h
-	$(CC) $(CFLAGS) -D BONUS $(INCLUDES) -c $< -o $@
+$(OBJ_DIR)/%.o: %.c includes/cub3d.h includes/cub3d_bonus.h includes/macros.h
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR_BONUS)/%.o: %.c includes/cub3d.h includes/cub3d_bonus.h includes/macros.h
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -D BONUS -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(OBJS_BONUS)
+	$(RM) $(OBJ_DIR) $(OBJ_DIR_BONUS)
 	@make clean -C $(MLX_PATH)
 
 fclean: clean
