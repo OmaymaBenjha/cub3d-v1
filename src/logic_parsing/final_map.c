@@ -47,11 +47,17 @@ void	make_map_rectangular(t_game *game)
 			new_line = gc_mall(sizeof(char) * (game->map_width + 1));
 			if (!new_line)
 				exit(1);
-			j = -1;
-			while (++j < len)
+			j = 0;
+			while (j < len)
+			{
 				new_line[j] = game->map[i][j];
-			while (++j < game->map_width)
+				j++;
+			}
+			while (j < game->map_width)
+			{
 				new_line[j] = ' ';
+				j++;
+			}
 			new_line[j] = '\0';
 			game->map[i] = new_line;
 		}
