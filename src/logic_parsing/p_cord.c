@@ -90,7 +90,7 @@ void	get_p_cord(t_game *game)
 
 	r = 0;
 	found = 0;
-	while (r < game->map_height)
+	while (r < game->mh)
 	{
 		c = 0;
 		while (c < ft_strlen(game->map[r]))

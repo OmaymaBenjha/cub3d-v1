@@ -1,30 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/30 14:22:48 by oben-jha          #+#    #+#             */
+/*   Updated: 2025/12/30 14:22:48 by oben-jha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_bonus.h"
+
 static void	put_pixel(t_textures *img, int x, int y, int color)
 {
 	char	*dst;
 
 	if (x < 0 || y < 0 || x >= img->width || y >= img->height)
-		return;
+		return ;
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-static void    draw_mp(t_game *g)
+static void	draw_mp(t_game *g)
 {
-    int x;
-    int y;
-    int mx;
-    int my;
+	int	x;
+	int	y;
+	int	mx;
+	int	my;
 
-    y = -1;
-    while (y++ < MINI_H)
-    {
-        x = -1;
-        while (x++ < MINI_W)
-        {
-            mx = (int)g->p.pos_x + ((x - MINI_W / 2.0) / MINI_TILE);
-            my = (int)g->p.pos_y + ((y - MINI_H / 2.0) / MINI_TILE);
-            if (mx < 0 || my < 0|| my >= (int)g->map_height|| mx >= (int)g->map_width)
+	y = -1;
+	while (y++ < MINI_H)
+	{
+		x = -1;
+		while (x++ < MINI_W)
+		{
+			mx = (int)g->p.pos_x + ((x - MINI_W / 2.0) / MINI_TILE);
+			my = (int)g->p.pos_y + ((y - MINI_H / 2.0) / MINI_TILE);
+			if (mx < 0 || my < 0|| my >= (int)g-> mh || mx >= (int)g->mw)
 				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_VOID);
 			else if (g->map[my][mx] == '1')
 				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_WALL);
@@ -34,9 +47,10 @@ static void    draw_mp(t_game *g)
 				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_FLOOR);
 			else
 				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_VOID);
-        }  
-    }
+		}
+	}
 }
+
 static void	draw_p(t_game *g)
 {
 	int	cx;
@@ -75,9 +89,9 @@ static void	draw_pd(t_game *g)
 	}
 }
 
-void    render_minimap(t_game *g)
+void	render_minimap(t_game *g)
 {
-    draw_mp(g);
-    draw_p(g);
-    draw_pd(g);
+	draw_mp(g);
+	draw_p(g);
+	draw_pd(g);
 }

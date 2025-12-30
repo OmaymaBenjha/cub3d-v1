@@ -20,7 +20,7 @@ static size_t	get_max_width(t_game *game)
 
 	max = 0;
 	i = 0;
-	while (i < game->map_height)
+	while (i < game->mh)
 	{
 		len = ft_strlen(game->map[i]);
 		if (len > max)
@@ -37,14 +37,14 @@ void	make_map_rectangular(t_game *game)
 	size_t	len;
 	char	*new_line;
 
-	game->map_width = get_max_width(game);
+	game->mw = get_max_width(game);
 	i = -1;
-	while (++i < game->map_height)
+	while (++i < game->mh)
 	{
 		len = ft_strlen(game->map[i]);
-		if (len < game->map_width)
+		if (len < game->mw)
 		{
-			new_line = gc_mall(sizeof(char) * (game->map_width + 1));
+			new_line = gc_mall(sizeof(char) * (game->mw + 1));
 			if (!new_line)
 				exit(1);
 			j = 0;
@@ -53,7 +53,7 @@ void	make_map_rectangular(t_game *game)
 				new_line[j] = game->map[i][j];
 				j++;
 			}
-			while (j < game->map_width)
+			while (j < game->mw)
 			{
 				new_line[j] = ' ';
 				j++;

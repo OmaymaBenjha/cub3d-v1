@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "macros.h"
+# include "macros.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -140,8 +140,8 @@ typedef struct s_game
 	t_textures	img_buffer;
 	t_config	config;
 	char		**map;
-	size_t		map_width;
-	size_t		map_height;
+	size_t		mw;
+	size_t		mh;
 	int			map_started;
 	int			map_ended;
 	int			p_count;

@@ -16,9 +16,9 @@ static int	is_next_to_wall(t_game *game, int ix, int iy)
 {
 	if (iy > 0 && game->map[iy - 1][ix] == '1')
 		return (1);
-	if ((size_t)(iy + 1) < game->map_height && game->map[iy + 1][ix] == '1')
+	if ((size_t)(iy + 1) < game->mh && game->map[iy + 1][ix] == '1')
 		return (1);
-	if ((size_t)(ix + 1) < game->map_width && game->map[iy][ix + 1] == '1')
+	if ((size_t)(ix + 1) < game->mw && game->map[iy][ix + 1] == '1')
 		return (1);
 	if (ix > 0 && game->map[iy][ix - 1] == '1')
 		return (1);
@@ -31,10 +31,10 @@ static void	snap_to_wall(t_game *game, t_sprite *sp, int ix, int iy)
 	sp->y = (double)iy + 0.9;
 	if (iy > 0 && game->map[iy - 1][ix] == '1')
 		sp->y = (double)iy + 0.01;
-	else if ((size_t)(iy + 1) < game->map_height
+	else if ((size_t)(iy + 1) < game->mh
 		&& game->map[iy + 1][ix] == '1')
 		sp->y = (double)iy + 0.99;
-	else if ((size_t)(ix + 1) < game->map_width
+	else if ((size_t)(ix + 1) < game->mw
 		&& game->map[iy][ix + 1] == '1')
 		sp->x = (double)ix + 0.99;
 	else if (ix > 0 && game->map[iy][ix - 1] == '1')

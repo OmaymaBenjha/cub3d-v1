@@ -39,8 +39,8 @@ void	initiate_game_struct(t_game *game)
 	game->config.all_done = 0;
 	game->map_started = 0;
 	game->map = NULL;
-	game->map_width = 0;
-	game->map_height = 0;
+	game->mw = 0;
+	game->mh = 0;
 	game->map_ended = 0;
 	game->p_count = 0;
 	game->config.c_has_been_set = 0;

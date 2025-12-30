@@ -6,7 +6,7 @@
 /*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 23:17:13 by oben-jha          #+#    #+#             */
-/*   Updated: 2025/12/27 01:06:31 by oben-jha         ###   ########.fr       */
+/*   Updated: 2025/12/30 14:29:17 by oben-jha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void	add_line(t_game *game, char *line)
 	size_t	i;
 
 	i = 0;
-	new_map = (char **)gc_mall(sizeof(char *) * (game->map_height + 2));
+	new_map = (char **)gc_mall(sizeof(char *) * (game->mh + 2));
 	if (!new_map)
 		(perror("Error\nMalloc failed for map"), exit(EXIT_FAILURE));
-	while (i < game->map_height)
+	while (i < game->mh)
 	{
 		new_map[i] = game->map[i];
 		i++;
@@ -44,7 +44,7 @@ static void	add_line(t_game *game, char *line)
 		(perror("Error\nMalloc failed for map line"), exit(EXIT_FAILURE));
 	new_map[i + 1] = NULL;
 	game->map = new_map;
-	game->map_height++;
+	game->mh++;
 }
 
 static int	validate_map_line(char *line, t_game *game)
@@ -88,12 +88,12 @@ int	process_map(char *line, t_game *game)
 		if (!game->map[0])
 			(perror("Error\nMalloc failed for map line"), exit(EXIT_FAILURE));
 		game->map[1] = NULL;
-		game->map_height = 1;
+		game->mh = 1;
 	}
 	else
 		add_line(game, line);
-	if (ft_strlen(line) > game->map_width)
-		game->map_width = ft_strlen(line);
+	if (ft_strlen(line) > game->mw)
+		game->mw = ft_strlen(line);
 	game->map_exist = 1;
 	return (1);
 }

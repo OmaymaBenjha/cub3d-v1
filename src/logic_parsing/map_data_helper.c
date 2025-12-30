@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_data_helper.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aziane <aziane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 21:54:09 by aziane            #+#    #+#             */
-/*   Updated: 2025/12/27 21:54:10 by aziane           ###   ########.fr       */
+/*   Updated: 2025/12/30 14:29:17 by oben-jha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static int	check_column_edges(t_game *game)
 	size_t	c;
 
 	c = 0;
-	while (c < game->map_width)
+	while (c < game->mw)
 	{
 		if (c < ft_strlen(game->map[0]) && (game->map[0][c] == '0'
 			|| is_p_char(game->map[0][c])))
 			return (printf("Error\nMap not closed (top edge).\n"), 0);
-		if (c < ft_strlen(game->map[game->map_height - 1])
-			&& (game->map[game->map_height - 1][c] == '0'
-			|| is_p_char(game->map[game->map_height - 1][c])))
+		if (c < ft_strlen(game->map[game->mh - 1])
+			&& (game->map[game->mh - 1][c] == '0'
+			|| is_p_char(game->map[game->mh - 1][c])))
 			return (printf("Error\nMap not closed (bottom edge).\n"), 0);
 		c++;
 	}
@@ -36,7 +36,7 @@ static int	check_neighbors(t_game *game, size_t r, size_t c)
 	if (r == 0 || (c >= ft_strlen(game->map[r - 1])
 			|| game->map[r - 1][c] == ' ' || game->map[r - 1][c] == '\0'))
 		return (printf("Error\nMap open (top neighbor).\n"), 0);
-	if (r == game->map_height - 1
+	if (r == game->mh - 1
 		|| (c >= ft_strlen(game->map[r + 1])
 			|| game->map[r + 1][c] == ' ' || game->map[r + 1][c] == '\0'))
 		return (printf("Error\nMap open (bottom neighbor).\n"), 0);
@@ -98,7 +98,7 @@ int	check_map_closed(t_game *game)
 	if (!check_column_edges(game))
 		return (0);
 	r = 0;
-	while (r < game->map_height)
+	while (r < game->mh)
 	{
 		if (!check_row_closure(game, r))
 			return (0);
