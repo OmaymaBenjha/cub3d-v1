@@ -30,36 +30,43 @@ static size_t	get_max_width(t_game *game)
 	return (max);
 }
 
+static char	*pad_map_line(char *line, size_t mw)
+{
+	size_t	len;
+	size_t	i;
+	char	*new_line;
+
+	len = ft_strlen(line);
+	new_line = gc_mall(sizeof(char) * (mw + 1));
+	if (!new_line)
+		exit(1);
+	i = 0;
+	while (i < len)
+	{
+		new_line[i] = line[i];
+		i++;
+	}
+	while (i < mw)
+	{
+		new_line[i] = ' ';
+		i++;
+	}
+	new_line[i] = '\0';
+	return (new_line);
+}
+
 void	make_map_rectangular(t_game *game)
 {
 	size_t	i;
-	size_t	j;
 	size_t	len;
-	char	*new_line;
 
 	game->mw = get_max_width(game);
-	i = -1;
-	while (++i < game->mh)
+	i = 0;
+	while (i < game->mh)
 	{
 		len = ft_strlen(game->map[i]);
 		if (len < game->mw)
-		{
-			new_line = gc_mall(sizeof(char) * (game->mw + 1));
-			if (!new_line)
-				exit(1);
-			j = 0;
-			while (j < len)
-			{
-				new_line[j] = game->map[i][j];
-				j++;
-			}
-			while (j < game->mw)
-			{
-				new_line[j] = ' ';
-				j++;
-			}
-			new_line[j] = '\0';
-			game->map[i] = new_line;
-		}
+			game->map[i] = pad_map_line(game->map[i], game->mw);
+		i++;
 	}
 }

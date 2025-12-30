@@ -37,7 +37,7 @@ static void	draw_mp(t_game *g)
 		{
 			mx = (int)g->p.pos_x + ((x - MINI_W / 2.0) / MINI_TILE);
 			my = (int)g->p.pos_y + ((y - MINI_H / 2.0) / MINI_TILE);
-			if (mx < 0 || my < 0|| my >= (int)g-> mh || mx >= (int)g->mw)
+			if (mx < 0 || my < 0 || my >= (int)g-> mh || mx >= (int)g->mw)
 				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_VOID);
 			else if (g->map[my][mx] == '1')
 				put_pixel(&g->img_buffer, x + 30, y + 30, COLOR_WALL);

@@ -6,7 +6,7 @@
 /*   By: oben-jha <oben-jha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 14:32:16 by oben-jha          #+#    #+#             */
-/*   Updated: 2025/12/30 14:32:42 by oben-jha         ###   ########.fr       */
+/*   Updated: 2025/12/30 14:50:51 by oben-jha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-
 # define KEY_ESC 65307
 # define KEY_W 119
 # define KEY_A 97
@@ -26,10 +25,8 @@
 # define KEY_RIGHT 65363
 # define KEY_SPACE 32
 # define KEY_ALT 65513
-
 # define MOVESPEED 0.1
 # define RS 0.1
-
 # define WIDTH 1920
 # define HEIGHT 1080
 # define COL_BUF 0.2
@@ -47,5 +44,13 @@
 # define F5 "assets/textures/menu/frame_5.xpm"
 # define F6 "assets/textures/menu/frame_6.xpm"
 # define F7 "assets/textures/menu/frame_7.xpm"
-
+# define MINI_W 150
+# define MINI_H 150
+# define MINI_TILE 10
+# define COLOR_WALL 0x00FFFFFF
+# define COLOR_DOOR 0xF2C668
+# define COLOR_FLOOR 0x00777777
+# define COLOR_VOID 0x00000000
+# define COLOR_PLAYER 0x00FF0000
+# define COLOR_DIR 0x0000FF00
 #endif
