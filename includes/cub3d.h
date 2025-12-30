@@ -249,6 +249,7 @@ void			rotate_right(t_game *game);
 void			move_left(t_game *game);
 void			move_right(t_game *game);
 int				track_mouse_pos(int x, int y, t_game *game);
+void			handle_extra_inputs(int keycode, t_game *game);
 
 void			drawing_engin(t_ray *ray, t_game *game, int x);
 void			my_mlx_pixel_put(t_textures *data, int x, int y, int color);

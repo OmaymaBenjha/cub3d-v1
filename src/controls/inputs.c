@@ -28,32 +28,11 @@ static void	handle_movement(int keycode, t_game *game)
 		move_right(game);
 }
 
-#ifdef BONUS
-
-static void	handle_mouse(t_game *game)
-{
-	game->mouse_locked = !game->mouse_locked;
-	if (game->mouse_locked)
-		mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
-	else
-		mlx_mouse_show(game->mlx_ptr, game->win_ptr);
-}
-
-#else
-
-static void	handle_mouse(t_game *game)
-{
-	(void)game;
-}
-
-#endif
-
 int	key_handler(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		handle_exit(game);
-	if (keycode == KEY_ALT)
-		handle_mouse(game);
+	handle_extra_inputs(keycode, game);
 	if (keycode == KEY_SPACE)
 		toggle_door(game);
 	handle_movement(keycode, game);

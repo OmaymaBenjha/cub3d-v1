@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_extra_keys_bonus.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aziane <aziane@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/30 15:50:00 by aziane            #+#    #+#             */
+/*   Updated: 2025/12/30 15:50:00 by aziane           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void	handle_extra_inputs(int keycode, t_game *game)
+{
+	if (keycode == KEY_ALT)
+	{
+		game->mouse_locked = !game->mouse_locked;
+		if (game->mouse_locked)
+			mlx_mouse_hide(game->mlx_ptr, game->win_ptr);
+		else
+			mlx_mouse_show(game->mlx_ptr, game->win_ptr);
+	}
+}
