@@ -207,7 +207,6 @@ char			*ft_strchr(const char *s, int c);
 char			*ft_strtrim_newline(char *s);
 int				ft_isdigit(int c);
 
-/* garbage collector */
 char			*gc_strdup(char *str);
 void			gc_add_pt(void *pt);
 char			*gc_substr(char const *s, unsigned int start, size_t len);
@@ -216,7 +215,6 @@ char			**gc_split(char const *s, char c);
 char			*gc_strjoin(char const *s1, char const *s2);
 void			*gc_mall(size_t size);
 
-/* map checking and parsing */
 int				pre_check(int ac, char **av);
 int				main_trigger(char *map, t_game *game);
 int				process_tex(char **tex_tokens, t_config *config,
@@ -238,7 +236,6 @@ char			*join_tokens(char **tokens);
 int				not_valid_num(char **rgb);
 t_color			get_representation(char **tokens, int *line);
 
-/* game core */
 void			init_game(t_game *game);
 void			render_welcome_page(t_game *game);
 int				key_handler(int keycode, t_game *game);
