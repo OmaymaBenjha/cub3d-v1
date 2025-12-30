@@ -60,14 +60,14 @@ static int	validate_map_line(char *line, t_game *game)
 		{
 			game->p_count++;
 			if (game->p_count > 1)
-				return (printf("Error\nTwo MTF in the map.\n"), 0);
+				return (printf("Error\nMultiple start positions found.\n"), 0);
 		}
 		if (line[i] == '0' || is_p_char(line[i]))
 		{
 			if (i > 0 && line[i - 1] == ' ')
-				return (printf("Error\nTwo MTF in the map\n"), 0);
+				return (printf("Error\nMap is not enclosed by walls.\n"), 0);
 			if (line[i + 1] == ' ')
-				return (printf("Error\n'0' or P surrounded by spc.\n"), 0);
+				return (printf("Error\nMap is not enclosed by walls.\n"), 0);
 		}
 		i++;
 	}

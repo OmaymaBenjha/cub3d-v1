@@ -1,7 +1,7 @@
 
 
 
-F 40, 4 , 21
+F 40, 40, 40
 
 C    10, 20, 30
 
@@ -9,11 +9,11 @@ C    10, 20, 30
 
 
 
-   WE ./assets/textures/wall.xpm
-  EA   ./assets/textures/wall.xpm
+   WE ./assets/textures/wall1.xpm
+  EA   ./assets/textures/wall2.xpm
 
-NO ./assets/textures/wall.xpm
-SO ./assets/textures/wall.xpm
+NO ./assets/textures/wall3.xpm
+SO ./assets/textures/wall4.xpm
 111111111111111111111111111
 100000000000000000000000001
 111111111111111111110111111

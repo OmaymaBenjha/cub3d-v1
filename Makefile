@@ -77,7 +77,7 @@ SRCS_BONUS = main.c \
 		src/bonus/sprite_casting_utils_bonus.c
 
 OBJS = $(SRCS:.c=.o)
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=_bonus.o)
 
 all: $(MLX_LIB) $(NAME)
 
@@ -87,11 +87,16 @@ $(MLX_LIB):
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME) 
 
-bonus: $(MLX_LIB) $(OBJS_BONUS)
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(MLX_LIB) $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(MLX_FLAGS) -o $(NAME_BONUS)
 
-%.o: %.c includes/cub3d.h includes/cub3d_bonus.h
+%.o: %.c includes/cub3d.h includes/cub3d_bonus.h includes/macros.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+%_bonus.o: %.c includes/cub3d.h includes/cub3d_bonus.h includes/macros.h
+	$(CC) $(CFLAGS) -D BONUS $(INCLUDES) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)
