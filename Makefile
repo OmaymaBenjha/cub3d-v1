@@ -94,11 +94,14 @@ $(NAME_BONUS): $(MLX_LIB) $(OBJS_BONUS)
 $(MLX_LIB):
 	@make -C $(MLX_PATH)
 
-$(OBJ_DIR)/%.o: %.c includes/cub3d.h includes/cub3d_bonus.h includes/macros.h
+HEADERS = includes/cub3d.h includes/macros.h
+HEADERS_BONUS = includes/cub3d.h includes/cub3d_bonus.h includes/macros.h
+
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR_BONUS)/%.o: %.c includes/cub3d.h includes/cub3d_bonus.h includes/macros.h
+$(OBJ_DIR_BONUS)/%.o: %.c $(HEADERS_BONUS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -D BONUS -c $< -o $@
 
